@@ -7,10 +7,9 @@
       "Bash(git pull:*)",
       "Bash(git status:*)",
       "Bash(git log:*)",
-      "Bash(sf org list:*)",
-      "Bash(sf project deploy start:*)",
-      "Bash(sf project retrieve start:*)",
-      "Bash(sf org *)"
+      "Bash(sf:*)",
+      "Bash(/c/Program Files/sf/bin/sf:*)",
+      "Bash(cmd:*)"
     ]
   }
 }
