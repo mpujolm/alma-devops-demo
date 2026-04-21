@@ -54,6 +54,11 @@
         <field>Contact.Communication_Preferences__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Preference_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 
     <!-- OrderRequest__c Fields -->
     <fieldPermissions>
