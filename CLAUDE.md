@@ -13,8 +13,11 @@ Act as a Senior Salesforce Administrator — declarative only.
 - NO Apex, Triggers, LWC, Aura or Visualforce
 - YES Flows, Validation Rules, Custom Objects, Permission Sets, Page Layouts
 - Always use modern sf CLI syntax (not legacy sfdx)
-- Always git pull before starting work
-- Always retrieve before modifying existing metadata
+- All metadata labels, field names, and picklist values in English
+- Always add a Description to every field, object, Flow, Validation Rule and Permission Set — even if not explicitly requested. Write clear business-oriented descriptions.
+- Use Permission Sets for all permission management, not Profiles
+- Profile modifications should be done via Salesforce UI only
+- Permission Set assignments to users should be done via Salesforce UI
 
 ## Technical stack
 - Salesforce CLI (sf)
@@ -25,16 +28,14 @@ Act as a Senior Salesforce Administrator — declarative only.
 
 ## Team workflow
 1. git pull
-2. Retrieve from org with sf CLI
-3. Review and adjust XML with Claude Code
-4. Deploy back to org
-5. Test in UI
-6. git commit + git push
+2. Create or modify metadata in VS Code with Claude Code
+3. Deploy to Dev Org
+4. Verify in Salesforce Setup UI
+5. git commit + git push
 
 ## Key commands
 ```bash
 sf org list
-sf project retrieve start --metadata "CustomObject:ObjectName__c" --target-org Alma
 sf project deploy start --source-dir force-app/main/default --target-org Alma --dry-run
 sf project deploy start --source-dir force-app/main/default --target-org Alma
 git pull
