@@ -19,6 +19,8 @@ Act as a Senior Salesforce Administrator — declarative only.
 - Profile modifications should be done via Salesforce UI only
 - Permission Set assignments to users should be done via Salesforce UI
 - Always create a Tab with an appropriate icon when creating a new custom object
+- Always retrieve the Page Layout before modifying it — never overwrite without retrieving first
+- Always retrieve the Permission Set before modifying it — never overwrite without retrieving first
 
 ## Technical stack
 - Salesforce CLI (sf)
