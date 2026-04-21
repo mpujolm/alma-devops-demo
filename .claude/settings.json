@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"sf project deploy start --source-dir force-app/main/default/permissionsets --target-org Alma\")",
+      "Bash(powershell -Command \"sf data create record --sobject PermissionSetAssignment --values \\\\\"AssigneeId='005gK00003IGehjQAD' PermissionSetId=\\(SELECT Id FROM PermissionSet WHERE Name='Alma_User' LIMIT 1\\)\\\\\" --target-org Alma\")",
+      "Bash(powershell -Command \"sf data query --query 'SELECT Id FROM PermissionSet WHERE Name=''Alma_User'' LIMIT 1' --target-org Alma\")",
+      "Bash(powershell -Command \"sf data create record --sobject PermissionSetAssignment --values 'AssigneeId=005gK00003IGehjQAD PermissionSetId=0PSgK00000E47u5WAB' --target-org Alma\")",
+      "Bash(powershell -Command \"sf data create record --sobject PermissionSetAssignment --values 'AssigneeId=005gK00003IHvlyQAD PermissionSetId=0PSgK00000E47u5WAB' --target-org Alma\")"
+    ]
+  }
+}
