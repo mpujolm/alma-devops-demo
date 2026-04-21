@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Categories__c</fullName>
+    <label>Product Categories</label>
+    <description>Indicates the product categories the contact is interested in or has previously purchased.</description>
+    <type>MultiselectPicklist</type>
+    <visibleLines>4</visibleLines>
+    <valueSet>
+        <restricted>false</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cleaning</fullName>
+                <default>false</default>
+                <label>Cleaning</label>
+            </value>
+            <value>
+                <fullName>Cosmetics</fullName>
+                <default>false</default>
+                <label>Cosmetics</label>
+            </value>
+            <value>
+                <fullName>Baby Cosmetics</fullName>
+                <default>false</default>
+                <label>Baby Cosmetics</label>
+            </value>
+            <value>
+                <fullName>Gels</fullName>
+                <default>false</default>
+                <label>Gels</label>
+            </value>
+            <value>
+                <fullName>Shampoo</fullName>
+                <default>false</default>
+                <label>Shampoo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
