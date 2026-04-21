@@ -18,6 +18,7 @@ Act as a Senior Salesforce Administrator — declarative only.
 - Use Permission Sets for all permission management, not Profiles
 - Profile modifications should be done via Salesforce UI only
 - Permission Set assignments to users should be done via Salesforce UI
+- Always create a Tab with an appropriate icon when creating a new custom object
 
 ## Technical stack
 - Salesforce CLI (sf)

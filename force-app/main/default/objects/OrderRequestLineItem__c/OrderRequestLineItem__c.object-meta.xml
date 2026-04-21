@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Order Request Line Item</label>
+    <pluralLabel>Order Request Line Items</pluralLabel>
+    <description>Stores individual product line items within an Order Request. Each line item represents one product, its quantity, price and container deposit information.</description>
+    <nameField>
+        <label>Line Item Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>LI-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

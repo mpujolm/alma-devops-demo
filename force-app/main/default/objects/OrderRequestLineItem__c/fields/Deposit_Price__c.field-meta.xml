@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deposit_Price__c</fullName>
+    <label>Deposit Price</label>
+    <type>Currency</type>
+    <required>false</required>
+    <precision>18</precision>
+    <scale>2</scale>
+    <description>Container deposit amount charged for this line item. Required when Deposit_Container__c is true. Will be discounted on the customer&apos;s next order when the container is returned.</description>
+</CustomField>

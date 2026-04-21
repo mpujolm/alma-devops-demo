@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deposit_Container__c</fullName>
+    <label>Deposit Container</label>
+    <type>Checkbox</type>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether a container deposit is included in this line item. Part of Alma&apos;s container return program — customers who return empty containers receive a discount on their next order.</description>
+</CustomField>
