@@ -1,3 +1,10 @@
-"Bash(sf:*)",
-"Bash(cmd:*)",
-"Bash(powershell:*)"
+{
+  "permissions": {
+    "allow": [
+      "Bash(sf:*)",
+      "Bash(cmd:*)",
+      "Bash(powershell:*)",
+      "PowerShell(*)"
+    ]
+  }
+}
