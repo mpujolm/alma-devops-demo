@@ -6,4 +6,5 @@
     <length>32768</length>
     <visibleLines>5</visibleLines>
     <description>Internal notes about the order — special instructions, delivery details or customer requests.</description>
+    <inlineHelpText>Internal notes about the order — special instructions, delivery details or customer requests</inlineHelpText>
 </CustomField>
