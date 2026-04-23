@@ -1,6 +1,6 @@
 # Alma Natural Cosmetics — Data Dictionary
 
-Last updated: 2026-04-21
+Last updated: 2026-04-23
 
 ---
 
@@ -12,9 +12,9 @@ Last updated: 2026-04-21
 | Order Request | `OrderRequest__c` | Custom | Customer order headers |
 | Order Request Line Item | `OrderRequestLineItem__c` | Custom | Individual product lines within an order |
 | Product Catalog | `Product2` | Standard | Alma product catalog *(custom fields pending)* |
-| Recipe | `Recipe__c` | Custom | Product recipes *(pending)* |
-| Recipe Line Item | `RecipeLineItem__c` | Custom | Ingredients within a recipe *(pending)* |
-| Raw Material | `RawMaterial__c` | Custom | Raw ingredients used in recipes *(pending)* |
+| Recipe | `Recipe__c` | Custom | Product recipes |
+| Recipe Line Item | `Recipe_Line_Item__c` | Custom | Ingredients within a recipe |
+| Raw Material | `Raw_Material__c` | Custom | Raw ingredients used in recipes |
 
 ---
 
@@ -87,84 +87,83 @@ Individual product lines within an Order Request.
 
 ---
 
-## Product Catalog (`Product2`) — Custom Fields Pending
+## Product Catalog (`Product2`)
 
 Standard Salesforce object extended with Alma-specific fields.
 
-| Field Label | API Name | Type | Required | Description | Example |
-|---|---|---|---|---|---|
-| Product Name | `Name` | Text | ✅ | Commercial product name | Crema hidratante lavanda 100ml |
-| Description | `Description` | Text Area | | Standard product description | Crema hidratante de día con aceite esencial... |
-| Final Price | `Final_Price__c` | Currency | | Selling price excl. container deposit | 10,00 |
-| Elaboration Cost | `Elaboration_Cost__c` | Currency | | Production cost excl. container deposit | 5,20 |
-| Margin Percent | `Margin_Percent__c` | Percent (2 dec.) | | (Price - Cost) / Cost × 100 | 92,99% |
-| Margin Euros | `Margin_Euros__c` | Currency | | Price - Cost in euros | 4,80 |
-| Current Stock | `Current_Stock__c` | Number (0 dec.) | | Available units in stock | 10 |
-| Units Per Batch | `Units_Per_Batch__c` | Number (0 dec.) | | Units produced per production batch | 10 |
-| Volume Ml | `Volume_Ml__c` | Number (0 dec.) | | Product volume in ml | 100 |
-| Deposit Price | `Deposit_Price__c` | Currency | | Container deposit price for this product | 1,50 |
-| Photo | `Photo__c` | URL | | Product photo filename or URL | Crema_hidr_lav_100.jpg |
-
-> ⚠️ **Pending confirmation:** Should Margin Percent and Margin Euros be formula fields (calculated from Final Price and Elaboration Cost) or editable fields?
+| Field Label | API Name | Type | Required | Description |
+|---|---|---|---|---|
+| Product Name | `Name` | Text | ✅ | Commercial product name |
+| Description | `Description` | Text Area | | Standard product description |
+| Price | `Price__c` | Currency | | Selling price excl. container deposit |
+| Production Cost | `Production_Cost__c` | Currency | | Production cost excl. container deposit |
+| Margin % | `Margin_Percent__c` | Percent (2 dec.) | | % profit on production cost |
+| Euros Margin | `Euros_Margin__c` | Currency | | Margin amount in euros |
+| Stock | `Stock__c` | Number (0 dec.) | | Available units in stock |
+| Batch Production | `Batch_Production__c` | Number (0 dec.) | | Units produced per production batch |
+| Quantity (ml) | `Quantity_ml__c` | Number (0 dec.) | | Product volume in ml |
+| Deposit Price | `Deposit_Price__c` | Currency | | Container deposit price for this product |
+| Product Image | `Product_Image__c` | HTML | | Product image (rich text / HTML) |
+| Recipe | `Recipe__c` | Lookup (Recipe__c) | | Recipe linked to this product |
 
 **Relationships:**
 - One Product → Many Order Request Line Items (via `OrderRequestLineItem__c.Product__c`)
-- One Product → Many Recipe Line Items (via `RecipeLineItem__c.Raw_Material__c`) *(pending)*
+- One Product → One Recipe (via `Recipe__c`)
 
 ---
 
-## Recipe (`Recipe__c`) — Pending
+## Recipe (`Recipe__c`)
 
 Product recipes defining ingredients, quantities and properties.
 
-| Field Label | API Name | Type | Required | Description | Example |
-|---|---|---|---|---|---|
-| Recipe Name | `Name` | Text | ✅ | Recipe name | Crema hidratante lavanda 100ml |
-| Long Description | `Long_Description__c` | Long Text Area (32768) | | Full recipe instructions and usage | Fase I: ponemos al baño maría... |
-| Total Quantity Ml | `Total_Quantity_Ml__c` | Number (0 dec.) | | Total volume produced by the recipe in ml | 200 |
-| Shelf Life Months | `Shelf_Life_Months__c` | Number (0 dec.) | | Shelf life in months from manufacture | 12 |
-| PAO Months | `PAO_Months__c` | Number (0 dec.) | | Period After Opening in months | 3 |
-| Skin Type | `Skin_Type__c` | Picklist | | Skin type: Normal, Dry, Oily, All Family | All Family |
-| Product Category | `Product_Category__c` | Picklist | | Category: Cleaning, Cosmetics, Baby Cosmetics, Gels, Shampoo | |
+| Field Label | API Name | Type | Required | Description |
+|---|---|---|---|---|
+| Recipe Name | `Name` | Text | ✅ | Recipe name |
+| Description | `Description__c` | Text (255) | | Recipe description, properties and usage instructions |
+| Total Quantity (ml) | `Total_Quantity_ml__c` | Number (0 dec.) | | Total volume produced by the recipe in ml |
+| Expiration Date | `Expiration_Date__c` | Number (0 dec.) | | Shelf life in months from manufacture (unopened) |
+| PAO | `PAO__c` | Number (0 dec.) | | Period After Opening in months |
+| Skin Type | `Skin_Type__c` | Picklist | | Skin type: Normal, Dry Skin, Oily Skin, Family Skin Care |
+| Product Category | `Product_Category__c` | Picklist | | Category: Cleaning product, Cosmetic, Kids cosmetic, Shower gel, Shampoo |
 
 **Relationships:**
-- One Recipe → Many Recipe Line Items (Master-Detail)
+- One Recipe → Many Recipe Line Items (via `Recipe_Line_Item__c.Recipe__c`)
+- One Recipe → Many Products (via `Product2.Recipe__c`)
 
 ---
 
-## Recipe Line Item (`RecipeLineItem__c`) — Pending
+## Recipe Line Item (`Recipe_Line_Item__c`)
 
 Individual ingredient lines within a Recipe.
 
-| Field Label | API Name | Type | Required | Description | Example |
-|---|---|---|---|---|---|
-| Line Item Name | `Name` | Auto Number (RLI-{0000}) | ✅ | Auto-generated identifier | RLI-0001 |
-| Recipe | `Recipe__c` | Master-Detail (Recipe__c) | ✅ | Parent recipe | |
-| Raw Material | `Raw_Material__c` | Lookup (RawMaterial__c) | | Ingredient used in this line | Manteca de Karité |
-| Quantity Grams | `Quantity_Grams__c` | Number (2 dec.) | | Quantity of ingredient in grams | 50 |
-| Price | `Price__c` | Currency | | Price of this ingredient line | 2,00 |
-
-> ⚠️ **Pending confirmation:** Should Price be a formula from Raw Material's Unit Price × Quantity, or manually entered?
+| Field Label | API Name | Type | Required | Description |
+|---|---|---|---|---|
+| Line Item Name | `Name` | Text | ✅ | Ingredient line identifier |
+| Recipe | `Recipe__c` | Lookup (Recipe__c) | | Parent recipe |
+| Raw Material | `Raw_Material__c` | Lookup (Raw_Material__c) | | Ingredient used in this line |
+| Quantity | `Quantity__c` | Number (0 dec.) | | Quantity of ingredient in grams |
+| Price | `Price__c` | Currency | | Price of this ingredient line in euros |
 
 **Relationships:**
-- Many Recipe Line Items → One Recipe (Master-Detail via `Recipe__c`)
+- Many Recipe Line Items → One Recipe (Lookup via `Recipe__c`)
 - Many Recipe Line Items → One Raw Material (Lookup via `Raw_Material__c`)
 
 ---
 
-## Raw Material (`RawMaterial__c`) — Pending
+## Raw Material (`Raw_Material__c`)
 
 Raw ingredients catalogue used in product recipes.
 
-| Field Label | API Name | Type | Required | Description | Example |
-|---|---|---|---|---|---|
-| Ingredient Name | `Name` | Text | ✅ | Common name of the ingredient | Manteca de Karité |
-| INCI Name | `INCI_Name__c` | Text (255) | | Official INCI nomenclature name | Butyrospermum Parkii Butter |
-| Stock Quantity | `Stock_Quantity__c` | Number (0 dec.) | | Available stock in grams | 1000 |
-| Unit Price | `Unit_Price__c` | Currency | | Price per unit (grams) | 16,00 |
+| Field Label | API Name | Type | Required | Description |
+|---|---|---|---|---|
+| Material Name | `Name` | Text | ✅ | Common name of the ingredient |
+| INCI | `INCI__c` | Text (255) | | Official INCI nomenclature name |
+| Material Category | `Material_Category__c` | Picklist | | Category: Tensionactivo, Principio activo, Aceite esencial/Aroma, Liquido, Conservante, Emulsionante, Aceites |
+| Quantity | `Quantity__c` | Number (0 dec.) | | Available stock in grams |
+| Price | `Price__c` | Currency | | Price in euros of the raw material |
 
 **Relationships:**
-- One Raw Material → Many Recipe Line Items (Lookup via `RecipeLineItem__c.Raw_Material__c`)
+- One Raw Material → Many Recipe Line Items (Lookup via `Recipe_Line_Item__c.Raw_Material__c`)
 
 ---
 
@@ -177,12 +176,12 @@ Contact
               └── Product2 (Lookup via Product__c)
 
 Recipe__c
-  └── RecipeLineItem__c (Master-Detail)
-        └── RawMaterial__c (Lookup via Raw_Material__c)
+  ├── Recipe_Line_Item__c (1:N via Recipe__c)
+  │     └── Raw_Material__c (Lookup via Raw_Material__c)
+  └── Product2 (1:N via Recipe__c)
 
 Product2
-  ├── OrderRequestLineItem__c (Lookup)
-  └── (future: linked to Recipe__c)
+  └── OrderRequestLineItem__c (Lookup via Product__c)
 ```
 
 ---
