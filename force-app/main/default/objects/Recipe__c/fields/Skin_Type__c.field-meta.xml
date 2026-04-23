@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Skin_Type__c</fullName>
+    <description>Skin type the product is indicated for: Normal, Dry, Oily, Family Skin Care</description>
+    <label>Skin Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Normal</fullName>
+                <default>false</default>
+                <label>Normal</label>
+            </value>
+            <value>
+                <fullName>Dry Skin</fullName>
+                <default>false</default>
+                <label>Dry Skin</label>
+            </value>
+            <value>
+                <fullName>Oily Skin</fullName>
+                <default>false</default>
+                <label>Oily Skin</label>
+            </value>
+            <value>
+                <fullName>Family Skin Care</fullName>
+                <default>false</default>
+                <label>Family Skin Care</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

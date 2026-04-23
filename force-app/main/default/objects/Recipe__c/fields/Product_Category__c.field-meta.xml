@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Category__c</fullName>
+    <description>Product category: cleaning product, cosmetic, kids cosmetic, shower gel, shampoo</description>
+    <label>Product Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cleaning product</fullName>
+                <default>false</default>
+                <label>Cleaning product</label>
+            </value>
+            <value>
+                <fullName>Cosmetic</fullName>
+                <default>false</default>
+                <label>Cosmetic</label>
+            </value>
+            <value>
+                <fullName>Kids cosmetic</fullName>
+                <default>false</default>
+                <label>Kids cosmetic</label>
+            </value>
+            <value>
+                <fullName>Shower gel</fullName>
+                <default>false</default>
+                <label>Shower gel</label>
+            </value>
+            <value>
+                <fullName>Shampoo</fullName>
+                <default>false</default>
+                <label>Shampoo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

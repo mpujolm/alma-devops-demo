@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Material_Category__c</fullName>
+    <description>Material category: tensionactivo, aroma o aceite esencial, liquido, conservante</description>
+    <label>Material Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Tensionactivo</fullName>
+                <default>false</default>
+                <label>Tensionactivo</label>
+            </value>
+            <value>
+                <fullName>Principio activo</fullName>
+                <default>false</default>
+                <label>Principio activo</label>
+            </value>
+            <value>
+                <fullName>Aceite esencial/Aroma</fullName>
+                <default>false</default>
+                <label>Aceite esencial/Aroma</label>
+            </value>
+            <value>
+                <fullName>Liquido</fullName>
+                <default>false</default>
+                <label>Liquido</label>
+            </value>
+            <value>
+                <fullName>Conservante</fullName>
+                <default>false</default>
+                <label>Conservante</label>
+            </value>
+            <value>
+                <fullName>Emulsionante</fullName>
+                <default>false</default>
+                <label>Emulsionante</label>
+            </value>
+            <value>
+                <fullName>Aceites</fullName>
+                <default>false</default>
+                <label>Aceites</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
