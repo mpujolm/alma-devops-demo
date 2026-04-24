@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Product_Categories__c</fullName>
-    <label>Product Categories</label>
     <description>Indicates the product categories the contact is interested in or has previously purchased.</description>
+    <label>Product Categories</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
     <type>MultiselectPicklist</type>
-    <visibleLines>4</visibleLines>
     <valueSet>
-        <restricted>false</restricted>
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
@@ -36,4 +36,5 @@
             </value>
         </valueSetDefinition>
     </valueSet>
+    <visibleLines>4</visibleLines>
 </CustomField>

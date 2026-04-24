@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OrderRequest__c</fullName>
-    <label>Order Request</label>
-    <type>MasterDetail</type>
-    <referenceTo>OrderRequest__c</referenceTo>
-    <relationshipName>Order_Request_Line_Items</relationshipName>
-    <relationshipLabel>Order Request Line Items</relationshipLabel>
     <description>Parent order this line item belongs to. Deleting the order deletes all its line items.</description>
+    <label>Order Request</label>
+    <referenceTo>OrderRequest__c</referenceTo>
+    <relationshipLabel>Order Request Line Items</relationshipLabel>
+    <relationshipName>Order_Request_Line_Items</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
 </CustomField>

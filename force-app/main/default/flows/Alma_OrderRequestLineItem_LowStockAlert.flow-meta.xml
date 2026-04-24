@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description>Calculates remaining stock by subtracting the ordered quantity from the product&apos;s current stock. Stores the result in varNewStock for the update and threshold check steps.</description>
+        <name>Calculate_New_Stock</name>
+        <label>Calculate New Stock</label>
+        <locationX>176</locationX>
+        <locationY>288</locationY>
+        <assignmentItems>
+            <assignToReference>varNewStock</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varProduct.Stock__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varNewStock</assignToReference>
+            <operator>Subtract</operator>
+            <value>
+                <elementReference>$Record.Quantity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Product_Stock</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Catches any error from the Get Product Stock step and ends the flow silently. Prevents technical errors from surfacing to users or interrupting the order creation process.</description>
+        <name>Handle_Fault_Gracefully</name>
+        <label>Handle Fault</label>
+        <locationX>440</locationX>
+        <locationY>168</locationY>
+        <assignmentItems>
+            <assignToReference>varNewStock</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <description>Checks whether remaining stock is 5 units or fewer. Routes to restock case creation if the threshold is breached; ends the flow normally if stock is still sufficient.</description>
+        <name>Is_Stock_Low</name>
+        <label>Is Stock Low?</label>
+        <locationX>176</locationX>
+        <locationY>528</locationY>
+        <defaultConnectorLabel>Stock OK</defaultConnectorLabel>
+        <rules>
+            <name>Stock_Below_Threshold</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varNewStock</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <numberValue>5.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Restock_Alert_Case</targetReference>
+            </connector>
+            <label>Stock Below Threshold</label>
+        </rules>
+    </decisions>
     <description>When an Order Line Item is created, subtracts the ordered quantity from the product stock. If remaining stock falls below 5 units, automatically creates an internal Case to alert Alma to restock.</description>
     <environments>Default</environments>
     <interviewLabel>Alma - Low Stock Alert &amp; Auto Case Creation {!$Flow.CurrentDateTime}</interviewLabel>
@@ -24,55 +86,57 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <start>
-        <locationX>176</locationX>
-        <locationY>50</locationY>
-        <connector>
-            <targetReference>Get_Product_Stock</targetReference>
-        </connector>
-        <object>OrderRequestLineItem__c</object>
-        <recordTriggerType>Create</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
-    </start>
-    <status>Obsolete</status>
-
-    <!-- Variables -->
-    <variables>
-        <name>varProduct</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Product2</objectType>
-    </variables>
-    <variables>
-        <name>varNewStock</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-    </variables>
-
-    <!-- Text Templates for dynamic Case content -->
-    <textTemplates>
-        <name>tmplCaseSubject</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>⚠️ Low Stock Alert: {!varProduct.Name}</text>
-    </textTemplates>
-    <textTemplates>
-        <name>tmplCaseDescription</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Product {!varProduct.Name} has only {!varNewStock} units remaining after order {!$Record.OrderRequest__c}. Please restock as soon as possible.</text>
-    </textTemplates>
-
-    <!-- Step 1: Get Product Record -->
+    <recordCreates>
+        <description>Creates a high-priority internal Case to notify Alma that this product needs restocking. Includes the product name, remaining units, and related order for full context.</description>
+        <name>Create_Restock_Alert_Case</name>
+        <label>Create Restock Alert Case</label>
+        <locationX>22</locationX>
+        <locationY>648</locationY>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>tmplCaseDescription</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Origin</field>
+            <value>
+                <stringValue>Internal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>tmplCaseSubject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <stringValue>Restock Alert</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordCreates>
     <recordLookups>
+        <description>Retrieves the Product2 record linked to this order line item to access its current stock level. A fault path ends the flow gracefully if the product cannot be found.</description>
         <name>Get_Product_Stock</name>
         <label>Get Product Stock</label>
-        <description>Retrieves the Product2 record linked to this order line item to access its current stock level. A fault path ends the flow gracefully if the product cannot be found.</description>
         <locationX>176</locationX>
         <locationY>168</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Calculate_New_Stock</targetReference>
         </connector>
@@ -87,62 +151,16 @@
                 <elementReference>$Record.Product__c</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Product2</object>
         <outputReference>varProduct</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>Stock__c</queriedFields>
-        <storeOutputAutomatically>false</storeOutputAutomatically>
     </recordLookups>
-
-    <!-- Fault Handler: end flow gracefully if product not found -->
-    <assignments>
-        <name>Handle_Fault_Gracefully</name>
-        <label>Handle Fault</label>
-        <description>Catches any error from the Get Product Stock step and ends the flow silently. Prevents technical errors from surfacing to users or interrupting the order creation process.</description>
-        <locationX>440</locationX>
-        <locationY>168</locationY>
-        <assignmentItems>
-            <assignToReference>varNewStock</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <numberValue>0</numberValue>
-            </value>
-        </assignmentItems>
-    </assignments>
-
-    <!-- Step 2: Calculate New Stock -->
-    <assignments>
-        <name>Calculate_New_Stock</name>
-        <label>Calculate New Stock</label>
-        <description>Calculates remaining stock by subtracting the ordered quantity from the product's current stock. Stores the result in varNewStock for the update and threshold check steps.</description>
-        <locationX>176</locationX>
-        <locationY>288</locationY>
-        <assignmentItems>
-            <assignToReference>varNewStock</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>varProduct.Stock__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varNewStock</assignToReference>
-            <operator>Subtract</operator>
-            <value>
-                <elementReference>$Record.Quantity__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Product_Stock</targetReference>
-        </connector>
-    </assignments>
-
-    <!-- Step 3: Update Product Stock -->
     <recordUpdates>
+        <description>Writes the calculated remaining stock back to the Product2 record, keeping inventory accurate after every new order line item is created.</description>
         <name>Update_Product_Stock</name>
         <label>Update Product Stock</label>
-        <description>Writes the calculated remaining stock back to the Product2 record, keeping inventory accurate after every new order line item is created.</description>
         <locationX>176</locationX>
         <locationY>408</locationY>
         <connector>
@@ -164,77 +182,41 @@
         </inputAssignments>
         <object>Product2</object>
     </recordUpdates>
-
-    <!-- Step 4: Decision — Is Stock Low? -->
-    <decisions>
-        <name>Is_Stock_Low</name>
-        <label>Is Stock Low?</label>
-        <description>Checks whether remaining stock is 5 units or fewer. Routes to restock case creation if the threshold is breached; ends the flow normally if stock is still sufficient.</description>
+    <start>
         <locationX>176</locationX>
-        <locationY>528</locationY>
-        <defaultConnectorLabel>Stock OK</defaultConnectorLabel>
-        <rules>
-            <name>Stock_Below_Threshold</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>varNewStock</leftValueReference>
-                <operator>LessThanOrEqualTo</operator>
-                <rightValue>
-                    <numberValue>5</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Create_Restock_Alert_Case</targetReference>
-            </connector>
-            <label>Stock Below Threshold</label>
-        </rules>
-    </decisions>
-
-    <!-- Step 5: Create Restock Alert Case -->
-    <recordCreates>
-        <name>Create_Restock_Alert_Case</name>
-        <label>Create Restock Alert Case</label>
-        <description>Creates a high-priority internal Case to notify Alma that this product needs restocking. Includes the product name, remaining units, and related order for full context.</description>
-        <locationX>22</locationX>
-        <locationY>648</locationY>
-        <inputAssignments>
-            <field>Subject</field>
-            <value>
-                <elementReference>tmplCaseSubject</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Description</field>
-            <value>
-                <elementReference>tmplCaseDescription</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Status</field>
-            <value>
-                <stringValue>New</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Priority</field>
-            <value>
-                <stringValue>High</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Origin</field>
-            <value>
-                <stringValue>Internal</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Type</field>
-            <value>
-                <stringValue>Restock Alert</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Case</object>
-        <storeOutputAutomatically>false</storeOutputAutomatically>
-    </recordCreates>
-
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Product_Stock</targetReference>
+        </connector>
+        <object>OrderRequestLineItem__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <textTemplates>
+        <name>tmplCaseDescription</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Product {!varProduct.Name} has only {!varNewStock} units remaining after order {!$Record.OrderRequest__c}. Please restock as soon as possible.</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tmplCaseSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>⚠️ Low Stock Alert: {!varProduct.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>varNewStock</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <name>varProduct</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Product2</objectType>
+    </variables>
 </Flow>

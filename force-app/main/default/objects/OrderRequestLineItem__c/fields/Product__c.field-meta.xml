@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Product__c</fullName>
-    <label>Product</label>
-    <type>Lookup</type>
-    <referenceTo>Product2</referenceTo>
-    <relationshipName>Order_Request_Line_Items</relationshipName>
-    <relationshipLabel>Order Request Line Items</relationshipLabel>
-    <required>false</required>
+    <deleteConstraint>SetNull</deleteConstraint>
     <description>Product from the Alma catalog included in this order line item.</description>
+    <label>Product</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>Order Request Line Items</relationshipLabel>
+    <relationshipName>Order_Request_Line_Items</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
 </CustomField>
