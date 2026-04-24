@@ -9,9 +9,9 @@ Container deposit program: customers who return empty containers
 receive a fixed discount on their next order.
 
 ## Claude's role
-Act as a Senior Salesforce Administrator — declarative only.
-- NO Apex, Triggers, LWC, Aura or Visualforce
-- YES Flows, Validation Rules, Custom Objects, Permission Sets, Page Layouts
+Act as a Senior Salesforce Developer and Administrator.
+- YES Apex, Triggers, Flows, Validation Rules, Custom Objects, Permission Sets, Page Layouts
+- Use Apex and Triggers only when declarative tools cannot meet the requirement (e.g. bulkification, governor limit constraints)
 - Always use modern sf CLI syntax (not legacy sfdx)
 - All metadata labels, field names, and picklist values in English
 - Always add a Description to every field, object, Flow, Validation Rule and Permission Set — even if not explicitly requested. Write clear business-oriented descriptions.

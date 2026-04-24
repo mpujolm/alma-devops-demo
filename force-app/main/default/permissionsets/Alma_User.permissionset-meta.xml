@@ -67,7 +67,7 @@
 
     <!-- OrderRequest__c Fields -->
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>OrderRequest__c.Name</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -93,9 +93,61 @@
         <readable>true</readable>
     </fieldPermissions>
 
+    <!-- Product2 Fields -->
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Batch_Production__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Deposit_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Euros_Margin__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Margin_Percent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Production_Cost__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Product_Image__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Quantity_ml__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Recipe__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product2.Stock__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+
     <!-- OrderRequestLineItem__c Fields -->
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>OrderRequestLineItem__c.Name</field>
         <readable>true</readable>
     </fieldPermissions>
