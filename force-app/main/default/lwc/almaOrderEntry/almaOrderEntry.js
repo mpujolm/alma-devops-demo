@@ -174,13 +174,13 @@ export default class AlmaOrderEntry extends LightningElement {
         this.isLoading    = true;
         this.errorMessage = '';
 
-        const lines = this.cartLines.map(l => ({
+        const linesJson = JSON.stringify(this.cartLines.map(l => ({
             productId: l.productId,
             quantity : l.quantity,
             unitPrice: l.unitPrice
-        }));
+        })));
 
-        createOrder({ contactId: this.contactId, lines })
+        createOrder({ contactId: this.contactId, linesJson })
             .then(name => {
                 this.orderNumber = name;
                 this.step        = STEP_SUCCESS;

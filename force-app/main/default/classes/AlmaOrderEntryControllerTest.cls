@@ -71,7 +71,7 @@ private class AlmaOrderEntryControllerTest {
         Test.startTest();
         String orderName = AlmaOrderEntryController.createOrder(
             contact.Id,
-            new List<AlmaOrderEntryController.OrderLineWrapper>{ line }
+            JSON.serialize(new List<AlmaOrderEntryController.OrderLineWrapper>{ line })
         );
         Test.stopTest();
 
@@ -113,7 +113,9 @@ private class AlmaOrderEntryControllerTest {
         }
 
         Test.startTest();
-        String orderName = AlmaOrderEntryController.createOrder(contact.Id, lines);
+        String orderName = AlmaOrderEntryController.createOrder(
+            contact.Id, JSON.serialize(lines)
+        );
         Test.stopTest();
 
         System.assertNotEquals(null, orderName);
@@ -128,8 +130,7 @@ private class AlmaOrderEntryControllerTest {
 
         Test.startTest();
         String orderName = AlmaOrderEntryController.createOrder(
-            contact.Id,
-            new List<AlmaOrderEntryController.OrderLineWrapper>()
+            contact.Id, '[]'
         );
         Test.stopTest();
 
@@ -157,7 +158,7 @@ private class AlmaOrderEntryControllerTest {
         try {
             AlmaOrderEntryController.createOrder(
                 contact.Id,
-                new List<AlmaOrderEntryController.OrderLineWrapper>{ badLine }
+                JSON.serialize(new List<AlmaOrderEntryController.OrderLineWrapper>{ badLine })
             );
         } catch (AuraHandledException ex) {
             caughtException = true;

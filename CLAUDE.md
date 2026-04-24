@@ -1,48 +1,41 @@
 # Alma Natural Cosmetics — Salesforce Project
 
-## Business context
-Alma is a one-person natural handmade cosmetics business.
-Customers are individuals (families, friends, schools, acquaintances).
+## Context
+One-person handmade cosmetics business. Key feature: container deposit program — customers returning empty containers get a discount on their next order.
 
-### Key differentiator
-Container deposit program: customers who return empty containers
-receive a fixed discount on their next order.
+## Rules
+- Act as a Senior Salesforce Administrator with Developer knowledge: prefer declarative tools (Flows, Validation Rules) over Apex; use Apex/Triggers only when declarative cannot meet the requirement (e.g. bulkification, governor limits)
+- All Apex must be bulkified
+- Never use SOQL or DML inside loops
+- Always create an Apex Test Class when generating Apex code
 
-## Claude's role
-Act as a Senior Salesforce Developer and Administrator.
-- YES Apex, Triggers, Flows, Validation Rules, Custom Objects, Permission Sets, Page Layouts
-- Use Apex and Triggers only when declarative tools cannot meet the requirement (e.g. bulkification, governor limit constraints)
-- Always use modern sf CLI syntax (not legacy sfdx)
-- All metadata labels, field names, and picklist values in English
-- Always add a Description to every field, object, Flow, Validation Rule and Permission Set — even if not explicitly requested. Write clear business-oriented descriptions.
+- Labels, field names, and picklist values: English
+- Add a Description to every field, object, Flow, Validation Rule, and Permission Set
+
 - Use Permission Sets for all permission management, not Profiles
-- Profile modifications should be done via Salesforce UI only
-- Permission Set assignments to users should be done via Salesforce UI
-- Always create a Tab with an appropriate icon when creating a new custom object
-- Always retrieve the Page Layout before modifying it — never overwrite without retrieving first
-- Always retrieve the Permission Set before modifying it — never overwrite without retrieving first
+- New custom objects: always create a Tab with an appropriate icon
+- Always retrieve a Page Layout or Permission Set before modifying it — never overwrite without retrieving first
 
-## Technical stack
-- Salesforce CLI (sf)
-- VS Code + Claude Code
-- SFDX project: force-app/main/default
-- Org alias: Alma
-- Git for version control
+## Data Model
+- Product2 includes Price__c as selling price
+- OrderRequest__c is related to Contact
+- OrderRequestLineItem__c is related to OrderRequest__c and Product2
 
-## Team workflow
-1. git pull
-2. Create or modify metadata in VS Code with Claude Code
-3. Deploy to Dev Org
-4. Verify in Salesforce Setup UI
-5. git commit + git push
+## Security
+- Always use `with sharing` in Apex
+- Never hardcode record IDs
+- Use bind variables in SOQL queries
 
-## Key commands
+## Output Style
+- Provide step-by-step instructions
+- Explain solutions in simple business terms for a Salesforce Admin
+- Provide `sf` CLI commands when relevant
+
+## Project
+- Org alias: `Alma`
+- Source path: `force-app/main/default`
+- Use modern `sf` CLI syntax (not legacy `sfdx`)
+
+## Deploy
 ```bash
-sf org list
-sf project deploy start --source-dir force-app/main/default --target-org Alma --dry-run
 sf project deploy start --source-dir force-app/main/default --target-org Alma
-git pull
-git add .
-git commit -m "describe what you changed"
-git push
-```

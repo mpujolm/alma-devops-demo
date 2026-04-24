@@ -43,9 +43,10 @@ public with sharing class AlmaOrderEntryController {
     /**
      * Creates an OrderRequest__c header and its OrderRequestLineItem__c children
      * in a single transaction. Returns the auto-number (ORD-XXXX) of the created order.
+     * linesJson: JSON array of { productId, quantity, unitPrice } objects.
      */
     @AuraEnabled
-    public static String createOrder(Id contactId, List<OrderLineWrapper> lines) {
+    public static String createOrder(Id contactId, String linesJson) {
         try {
             OrderRequest__c order = new OrderRequest__c(
                 Contact__c    = contactId,
@@ -54,7 +55,10 @@ public with sharing class AlmaOrderEntryController {
             );
             insert order;
 
-            if (lines != null && !lines.isEmpty()) {
+            if (String.isNotBlank(linesJson)) {
+                List<OrderLineWrapper> lines = (List<OrderLineWrapper>)
+                    JSON.deserialize(linesJson, List<AlmaOrderEntryController.OrderLineWrapper>.class);
+
                 List<OrderRequestLineItem__c> lineItems = new List<OrderRequestLineItem__c>();
                 for (OrderLineWrapper line : lines) {
                     lineItems.add(new OrderRequestLineItem__c(
@@ -64,7 +68,7 @@ public with sharing class AlmaOrderEntryController {
                         Unit_Price__c   = line.unitPrice
                     ));
                 }
-                insert lineItems;
+                if (!lineItems.isEmpty()) insert lineItems;
             }
 
             return [SELECT Name FROM OrderRequest__c WHERE Id = :order.Id LIMIT 1].Name;
