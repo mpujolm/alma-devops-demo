@@ -6,7 +6,9 @@
       "Bash(powershell:*)",
       "PowerShell(*)",
       "Bash(git branch *)",
-      "Bash(grep -v \"^$\")"
+      "Bash(grep -v \"^$\")",
+      "Bash(mkdir -p /tmp/destructive)",
+      "Bash(cat)"
     ]
   }
 }
