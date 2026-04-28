@@ -65,9 +65,6 @@
     </layoutSections>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>NewRecipeLineItem</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
             <quickActionName>SendEmail</quickActionName>
         </quickActionListItems>
         <quickActionListItems>

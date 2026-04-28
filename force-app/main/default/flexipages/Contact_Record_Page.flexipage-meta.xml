@@ -605,12 +605,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>almaOrderEntry</componentName>
-                <identifier>c_almaOrderEntry</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>label</name>
                     <value>Tabs</value>

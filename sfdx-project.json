@@ -5,16 +5,9 @@
       "default": true
     }
   ],
-<<<<<<< HEAD
   "name": "Alma",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "66.0",
   "defaultLwcLanguage": "javascript"
-=======
-  "name": ".",
-  "namespace": "",
-  "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "66.0"
->>>>>>> a553a46b433610fb65bbe543092912fc7505cafc
 }

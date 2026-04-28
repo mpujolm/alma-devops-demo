@@ -4,7 +4,9 @@
       "Bash(sf:*)",
       "Bash(cmd:*)",
       "Bash(powershell:*)",
-      "PowerShell(*)"
+      "PowerShell(*)",
+      "Bash(git branch *)",
+      "Bash(grep -v \"^$\")"
     ]
   }
 }
