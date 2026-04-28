@@ -15,7 +15,7 @@
                 <field>Recipe__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Quantity__c</field>
             </layoutItems>
         </layoutColumns>
@@ -29,7 +29,7 @@
                 <field>Raw_Material__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Price__c</field>
             </layoutItems>
         </layoutColumns>
