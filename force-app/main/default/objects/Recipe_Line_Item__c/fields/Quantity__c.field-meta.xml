@@ -3,7 +3,9 @@
     <fullName>Quantity__c</fullName>
     <description>Quantity in grams needed for the recipe</description>
     <externalId>false</externalId>
-    <label>Quantity</label>
+    <formula>Raw_Material__r.Quantity__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quantity (Raw Material)</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>
