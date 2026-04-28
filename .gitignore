@@ -46,3 +46,9 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# Office documents and PDFs
+*.docx
+*.xlsx
+*.pdf
+~$*
