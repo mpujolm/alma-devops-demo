@@ -38,4 +38,4 @@ One-person handmade cosmetics business. Key feature: container deposit program â
 
 ## Deploy
 ```bash
-sf project deploy start --source-dir force-app/main/default --target-org Alma
+sf project deploy start --source-dir force-app/main/default
