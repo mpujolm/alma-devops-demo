@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_Recipe__c</fullName>
+    <description>Price of this ingredient in the recipe = Quantity used * Raw Material price / Raw Material stock quantity</description>
+    <formula>IF(OR(ISBLANK(Quantity__c), Quantity__c = 0), 0, Quantity_Recipe__c * Price__c / Quantity__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Price</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

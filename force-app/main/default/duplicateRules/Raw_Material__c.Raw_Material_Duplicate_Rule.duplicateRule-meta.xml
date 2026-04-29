@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOnInsert>Block</actionOnInsert>
+    <actionOnUpdate>Block</actionOnUpdate>
+    <alertText>A Raw Material record with this name already exists.</alertText>
+    <duplicateRuleMatchRules>
+        <matchRuleSObjectType>Raw_Material__c</matchRuleSObjectType>
+        <matchingRule>Raw_Material_Name_Match</matchingRule>
+
+    </duplicateRuleMatchRules>
+    <isActive>true</isActive>
+    <masterLabel>Raw Material Duplicate Rule</masterLabel>
+    <securityOption>EnforceSharingRules</securityOption>
+    <sortOrder>1</sortOrder>
+</DuplicateRule>

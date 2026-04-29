@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Buscar Materia Prima" icon-name="standard:product">
+        <div class="slds-p-horizontal_medium slds-p-bottom_medium">
+            <lightning-input
+                type="search"
+                label="Nombre"
+                placeholder="Ej: Aceite esencial..."
+                value={searchTerm}
+                onchange={handleSearch}>
+            </lightning-input>
+
+            <template lwc:if={isLoading}>
+                <div class="slds-m-top_small slds-text-align_center">
+                    <lightning-spinner alternative-text="Buscando..." size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <template lwc:if={hasResults}>
+                <ul class="slds-m-top_small slds-has-dividers_top-space">
+                    <template for:each={results} for:item="record">
+                        <li key={record.Id} class="slds-item slds-p-vertical_x-small">
+                            <a onclick={handleNavigate} data-id={record.Id} class="slds-text-link">
+                                {record.Name}
+                            </a>
+                            <template lwc:if={record.Material_Category__c}>
+                                <span class="slds-badge slds-m-left_x-small">{record.Material_Category__c}</span>
+                            </template>
+                            <div class="slds-text-body_small slds-text-color_weak slds-m-top_xx-small">
+                                <template lwc:if={record.Price__c}>
+                                    <span>Precio: {record.Price__c}</span>
+                                </template>
+                                <template lwc:if={record.Quantity__c}>
+                                    <span class="slds-m-left_small">Cantidad: {record.Quantity__c}</span>
+                                </template>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <template lwc:if={noResults}>
+                <p class="slds-m-top_small slds-text-color_weak slds-text-align_center">
+                    No se encontraron registros.
+                </p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
