@@ -33,7 +33,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Customer_Type__c</field>
+                <field>Contact_Origin__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
