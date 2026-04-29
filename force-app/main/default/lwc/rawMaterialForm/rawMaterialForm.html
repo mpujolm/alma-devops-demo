@@ -1,0 +1,66 @@
+<template>
+    <lightning-record-edit-form
+        object-api-name="Raw_Material__c"
+        onsubmit={handleSubmit}
+        onsuccess={handleSuccess}>
+
+        <lightning-messages></lightning-messages>
+
+        <div class="slds-p-around_medium">
+            <div class="slds-form-element slds-m-bottom_medium name-wrapper">
+                <label class="slds-form-element__label">
+                    <abbr class="slds-required" title="required">*</abbr>
+                    Material name
+                </label>
+                <div class="slds-form-element__control">
+                    <input
+                        class="slds-input"
+                        type="text"
+                        value={name}
+                        placeholder="Escribe el nombre..."
+                        oninput={handleNameInput}
+                        onblur={handleBlur}
+                        autocomplete="off"
+                    />
+                </div>
+                <template lwc:if={nameError}>
+                    <p class="slds-form-error">{nameError}</p>
+                </template>
+                <template lwc:if={showDropdown}>
+                    <div class="suggestions-box">
+                        <template for:each={suggestions} for:item="rec">
+                            <div
+                                key={rec.Id}
+                                class="suggestion-item"
+                                onmousedown={handleSelectExisting}
+                                data-id={rec.Id}>
+                                <div class="slds-truncate suggestion-name">{rec.Name}</div>
+                                <div class="suggestion-meta">
+                                    <template lwc:if={rec.Material_Category__c}>
+                                        <span class="slds-badge">{rec.Material_Category__c}</span>
+                                    </template>
+                                    <template lwc:if={rec.Price__c}>
+                                        <span class="slds-m-left_x-small">Precio: {rec.Price__c}</span>
+                                    </template>
+                                    <template lwc:if={rec.Quantity__c}>
+                                        <span class="slds-m-left_x-small">· Cant: {rec.Quantity__c}</span>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+            <lightning-input-field field-name="Material_Category__c"></lightning-input-field>
+            <lightning-input-field field-name="INCI__c"></lightning-input-field>
+            <lightning-input-field field-name="Price__c"></lightning-input-field>
+            <lightning-input-field field-name="Quantity__c"></lightning-input-field>
+        </div>
+
+        <div class="slds-modal__footer">
+            <lightning-button label="Cancelar" onclick={handleCancel} class="slds-m-right_small"></lightning-button>
+            <lightning-button type="submit" variant="brand" label="Guardar"></lightning-button>
+        </div>
+    </lightning-record-edit-form>
+</template>
