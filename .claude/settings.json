@@ -8,7 +8,15 @@
       "Bash(git branch *)",
       "Bash(grep -v \"^$\")",
       "Bash(mkdir -p /tmp/destructive)",
-      "Bash(cat)"
+      "Bash(cat)",
+      "Bash(git rm *)",
+      "Bash(git checkout *)",
+      "WebSearch",
+      "WebFetch(domain:developer.salesforce.com)",
+      "WebFetch(domain:trailhead.salesforce.com)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
     ]
   }
 }

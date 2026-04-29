@@ -1,40 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>66.0</apiVersion>
-    <description>Creates a high priority Case when a Product Stock__c drops below 10 units for the first time (threshold crossing only). A Decision element checks that the prior value was >= 10 to avoid duplicate alerts.</description>
-    <environments>Default</environments>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
-        <name>Was_Above_Threshold</name>
-        <label>Was Above Threshold?</label>
-        <locationX>182</locationX>
-        <locationY>134</locationY>
-        <defaultConnectorLabel>No (Already Below 10)</defaultConnectorLabel>
+        <name>User_Found</name>
+        <label>User Found?</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <defaultConnector>
+            <targetReference>Notify_Admin_User_Not_Found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No (User Not Found)</defaultConnectorLabel>
         <rules>
-            <name>Yes_Threshold_Crossed</name>
+            <name>Yes_User_Found</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>$Record__Prior.Stock__c</leftValueReference>
-                <operator>GreaterThanOrEqualTo</operator>
+                <leftValueReference>Get_AssignedUser.Id</leftValueReference>
+                <operator>IsNull</operator>
                 <rightValue>
-                    <numberValue>10.0</numberValue>
+                    <booleanValue>false</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_AssignedUser</targetReference>
+                <targetReference>Create_LowStockCase</targetReference>
             </connector>
-            <label>Yes (Threshold Crossed)</label>
+            <label>Yes (User Found)</label>
         </rules>
     </decisions>
+    <description>Creates a high priority Case assigned to Ana Perez when a Product Stock__c drops below 10 units for the first time (threshold crossing only). If stock is negative, the Case warns that the stock value may be incorrect and needs review.</description>
+    <environments>Default</environments>
     <formulas>
-        <name>CaseSubject</name>
+        <name>AdminEmail</name>
         <dataType>String</dataType>
-        <expression>"Low Stock Alert: " &amp; {!$Record.Name}</expression>
+        <expression>{!$User.Email}</expression>
+    </formulas>
+    <formulas>
+        <name>EmailBody_UserNotFound</name>
+        <dataType>String</dataType>
+        <expression>"El flow 'Low Stock Alert' se ejecutó para el producto '" &amp; {!$Record.Name} &amp; "' pero no encontró el usuario 'ana.perez@alma-natural-cosmetics.dev'. Verifica que el username en el flow es correcto."</expression>
+    </formulas>
+    <formulas>
+        <name>EmailBody_CaseCreateError</name>
+        <dataType>String</dataType>
+        <expression>"El flow 'Low Stock Alert' no pudo crear el Case para el producto '" &amp; {!$Record.Name} &amp; "'. Error: " &amp; {!$Flow.FaultMessage}</expression>
     </formulas>
     <formulas>
         <name>CaseDescription</name>
         <dataType>String</dataType>
-        <expression>"El producto " &amp; {!$Record.Name} &amp; " tiene " &amp; TEXT({!$Record.Stock__c}) &amp; " unidades en stock. Se requiere reposición."</expression>
+        <expression>IF(
+  {!$Record.Stock__c} &lt; 0,
+  "ATENCIÓN: El producto " &amp; {!$Record.Name} &amp; " tiene stock NEGATIVO (" &amp; TEXT({!$Record.Stock__c}) &amp; " unidades). El stock puede estar mal, hay que revisarlo.",
+  "El producto " &amp; {!$Record.Name} &amp; " tiene " &amp; TEXT({!$Record.Stock__c}) &amp; " unidades en stock. Se requiere reposición urgente."
+)</expression>
     </formulas>
+    <formulas>
+        <name>CaseSubject</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  {!$Record.Stock__c} &lt; 0,
+  "Stock Negativo - Revisar: " &amp; {!$Record.Name},
+  "Low Stock Alert: " &amp; {!$Record.Name}
+)</expression>
+    </formulas>
+    <actionCalls>
+        <name>Notify_Admin_User_Not_Found</name>
+        <label>Notify Admin: User Not Found</label>
+        <locationX>396</locationX>
+        <locationY>518</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>AdminEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>[Alma Flow] Error: Usuario no encontrado - Low Stock Alert</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailBody_UserNotFound</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Notify_Admin_Case_Error</name>
+        <label>Notify Admin: Case Creation Failed</label>
+        <locationX>396</locationX>
+        <locationY>638</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>AdminEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>[Alma Flow] Error al crear Case - Low Stock Alert</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailBody_CaseCreateError</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
     <interviewLabel>Alma Product Low Stock Alert {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Alma - Product Low Stock Alert</label>
     <processMetadataValues>
@@ -59,8 +138,8 @@
     <recordCreates>
         <name>Create_LowStockCase</name>
         <label>Create Low Stock Case</label>
-        <locationX>182</locationX>
-        <locationY>368</locationY>
+        <locationX>176</locationX>
+        <locationY>518</locationY>
         <inputAssignments>
             <field>Description</field>
             <value>
@@ -97,16 +176,19 @@
                 <elementReference>CaseSubject</elementReference>
             </value>
         </inputAssignments>
+        <faultConnector>
+            <targetReference>Notify_Admin_Case_Error</targetReference>
+        </faultConnector>
         <object>Case</object>
     </recordCreates>
     <recordLookups>
         <name>Get_AssignedUser</name>
         <label>Get Assigned User</label>
-        <locationX>182</locationX>
-        <locationY>260</locationY>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_LowStockCase</targetReference>
+            <targetReference>User_Found</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -121,11 +203,12 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>56</locationX>
+        <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Was_Above_Threshold</targetReference>
+            <targetReference>Get_AssignedUser</targetReference>
         </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Stock__c</field>
