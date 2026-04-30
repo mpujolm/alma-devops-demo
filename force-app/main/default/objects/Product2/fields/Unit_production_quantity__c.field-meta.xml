@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <formula>Recipe__r.Total_Quantity_ml__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Unit production quantity</label>
+    <label>Unit production quantity (ml)</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

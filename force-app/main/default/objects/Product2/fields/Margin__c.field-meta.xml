@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Margin__c</fullName>
-    <formula>IF(Total_Unit_Cost__c = 0, 0, (Euros_Margin__c / Total_Unit_Cost__c) * 100)</formula>
+    <formula>IF(Total_Unit_Cost__c = 0, 0, (Euros_Margin__c / Total_Unit_Cost__c))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>% Margin</label>
     <precision>18</precision>
