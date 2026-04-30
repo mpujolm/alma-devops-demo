@@ -149,14 +149,15 @@
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>Recipe Line Item</label>
     <nameField>
-        <label>Material name</label>
-        <type>Text</type>
+        <displayFormat>RLI-{0000000}</displayFormat>
+        <label>Recipe Line Item</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Recipe Line Items</pluralLabel>
     <searchLayouts></searchLayouts>
