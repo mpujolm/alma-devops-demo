@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata">
+<DuplicateRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOnInsert>Block</actionOnInsert>
     <actionOnUpdate>Block</actionOnUpdate>
     <alertText>A Raw Material record with this name already exists.</alertText>
+    <description xsi:nil="true"/>
+    <duplicateRuleFilter xsi:nil="true"/>
     <duplicateRuleMatchRules>
         <matchRuleSObjectType>Raw_Material__c</matchRuleSObjectType>
         <matchingRule>Raw_Material_Name_Match</matchingRule>
-
+        <objectMapping xsi:nil="true"/>
     </duplicateRuleMatchRules>
     <isActive>true</isActive>
     <masterLabel>Raw Material Duplicate Rule</masterLabel>

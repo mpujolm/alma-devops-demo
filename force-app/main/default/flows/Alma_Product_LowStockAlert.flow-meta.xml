@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Notify_Admin_Case_Error</name>
+        <label>Notify Admin: Case Creation Failed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>AdminEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>[Alma Flow] Error al crear Case - Low Stock Alert</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailBody_CaseCreateError</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Notify_Admin_User_Not_Found</name>
+        <label>Notify Admin: User Not Found</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>AdminEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>[Alma Flow] Error: Usuario no encontrado - Low Stock Alert</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailBody_UserNotFound</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
     <apiVersion>66.0</apiVersion>
     <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <decisions>
         <name>User_Found</name>
         <label>User Found?</label>
-        <locationX>176</locationX>
-        <locationY>398</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <defaultConnector>
             <targetReference>Notify_Admin_User_Not_Found</targetReference>
         </defaultConnector>
@@ -35,22 +91,12 @@
         <expression>{!$User.Email}</expression>
     </formulas>
     <formulas>
-        <name>EmailBody_UserNotFound</name>
-        <dataType>String</dataType>
-        <expression>"El flow 'Low Stock Alert' se ejecutó para el producto '" &amp; {!$Record.Name} &amp; "' pero no encontró el usuario 'ana.perez@alma-natural-cosmetics.dev'. Verifica que el username en el flow es correcto."</expression>
-    </formulas>
-    <formulas>
-        <name>EmailBody_CaseCreateError</name>
-        <dataType>String</dataType>
-        <expression>"El flow 'Low Stock Alert' no pudo crear el Case para el producto '" &amp; {!$Record.Name} &amp; "'. Error: " &amp; {!$Flow.FaultMessage}</expression>
-    </formulas>
-    <formulas>
         <name>CaseDescription</name>
         <dataType>String</dataType>
         <expression>IF(
   {!$Record.Stock__c} &lt; 0,
-  "ATENCIÓN: El producto " &amp; {!$Record.Name} &amp; " tiene stock NEGATIVO (" &amp; TEXT({!$Record.Stock__c}) &amp; " unidades). El stock puede estar mal, hay que revisarlo.",
-  "El producto " &amp; {!$Record.Name} &amp; " tiene " &amp; TEXT({!$Record.Stock__c}) &amp; " unidades en stock. Se requiere reposición urgente."
+  &quot;ATENCIÓN: El producto &quot; &amp; {!$Record.Name} &amp; &quot; tiene stock NEGATIVO (&quot; &amp; TEXT({!$Record.Stock__c}) &amp; &quot; unidades). El stock puede estar mal, hay que revisarlo.&quot;,
+  &quot;El producto &quot; &amp; {!$Record.Name} &amp; &quot; tiene &quot; &amp; TEXT({!$Record.Stock__c}) &amp; &quot; unidades en stock. Se requiere reposición urgente.&quot;
 )</expression>
     </formulas>
     <formulas>
@@ -58,62 +104,20 @@
         <dataType>String</dataType>
         <expression>IF(
   {!$Record.Stock__c} &lt; 0,
-  "Stock Negativo - Revisar: " &amp; {!$Record.Name},
-  "Low Stock Alert: " &amp; {!$Record.Name}
+  &quot;Stock Negativo - Revisar: &quot; &amp; {!$Record.Name},
+  &quot;Low Stock Alert: &quot; &amp; {!$Record.Name}
 )</expression>
     </formulas>
-    <actionCalls>
-        <name>Notify_Admin_User_Not_Found</name>
-        <label>Notify Admin: User Not Found</label>
-        <locationX>396</locationX>
-        <locationY>518</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <inputParameters>
-            <name>emailAddresses</name>
-            <value>
-                <elementReference>AdminEmail</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>[Alma Flow] Error: Usuario no encontrado - Low Stock Alert</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>EmailBody_UserNotFound</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <name>Notify_Admin_Case_Error</name>
-        <label>Notify Admin: Case Creation Failed</label>
-        <locationX>396</locationX>
-        <locationY>638</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <inputParameters>
-            <name>emailAddresses</name>
-            <value>
-                <elementReference>AdminEmail</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>[Alma Flow] Error al crear Case - Low Stock Alert</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>EmailBody_CaseCreateError</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
+    <formulas>
+        <name>EmailBody_CaseCreateError</name>
+        <dataType>String</dataType>
+        <expression>&quot;El flow &apos;Low Stock Alert&apos; no pudo crear el Case para el producto &apos;&quot; &amp; {!$Record.Name} &amp; &quot;&apos;. Error: &quot; &amp; {!$Flow.FaultMessage}</expression>
+    </formulas>
+    <formulas>
+        <name>EmailBody_UserNotFound</name>
+        <dataType>String</dataType>
+        <expression>&quot;El flow &apos;Low Stock Alert&apos; se ejecutó para el producto &apos;&quot; &amp; {!$Record.Name} &amp; &quot;&apos; pero no encontró el usuario &apos;ana.perez@alma-natural-cosmetics.dev&apos;. Verifica que el username en el flow es correcto.&quot;</expression>
+    </formulas>
     <interviewLabel>Alma Product Low Stock Alert {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Alma - Product Low Stock Alert</label>
     <processMetadataValues>
@@ -138,8 +142,11 @@
     <recordCreates>
         <name>Create_LowStockCase</name>
         <label>Create Low Stock Case</label>
-        <locationX>176</locationX>
-        <locationY>518</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <faultConnector>
+            <targetReference>Notify_Admin_Case_Error</targetReference>
+        </faultConnector>
         <inputAssignments>
             <field>Description</field>
             <value>
@@ -176,16 +183,13 @@
                 <elementReference>CaseSubject</elementReference>
             </value>
         </inputAssignments>
-        <faultConnector>
-            <targetReference>Notify_Admin_Case_Error</targetReference>
-        </faultConnector>
         <object>Case</object>
     </recordCreates>
     <recordLookups>
         <name>Get_AssignedUser</name>
         <label>Get Assigned User</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>User_Found</targetReference>
@@ -203,7 +207,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
+        <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_AssignedUser</targetReference>
