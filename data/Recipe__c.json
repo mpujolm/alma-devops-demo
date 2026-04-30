@@ -1,0 +1,48 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "Recipe__cRef1"
+            },
+            "Name": "Crema hidratante lavanda 100ml",
+            "Description__c": "Crema hidratante para todo tipo de pieles y toda la familia. Con aroma a lavanda que aporta frescura e hidratación.",
+            "Expiration_Date__c": 6,
+            "PAO__c": 6,
+            "Skin_Type__c": "Family Skin Care"
+        },
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "Recipe__cRef2"
+            },
+            "Name": "Crema facial&corporal",
+            "Expiration_Date__c": 4,
+            "PAO__c": 6,
+            "Product_Category__c": "Cosmetic",
+            "Skin_Type__c": "Family Skin Care"
+        },
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "Recipe__cRef3"
+            },
+            "Name": "Serum hialuronico con Niacinamida",
+            "Expiration_Date__c": 4,
+            "PAO__c": 6,
+            "Product_Category__c": "Cosmetic",
+            "Skin_Type__c": "Normal"
+        },
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "Recipe__cRef4"
+            },
+            "Name": "Champú familiar",
+            "Expiration_Date__c": 6,
+            "PAO__c": 8,
+            "Product_Category__c": "Shampoo",
+            "Skin_Type__c": "Family Skin Care"
+        }
+    ]
+}

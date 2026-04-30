@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Euros_Margin__c</fullName>
-    <formula>( Customer_Price__c -  Total_Unit_Cost__c )</formula>
+    <fullName>Unit_production_cost__c</fullName>
+    <formula>Recipe__r.Total_Cost__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Euros Margin</label>
+    <label>Unit production cost</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>
