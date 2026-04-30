@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Total_Quantity_ml__c</fullName>
-    <label>Total Quantity ml</label>
-    <summarizedField>Recipe_Line_Item__c.Quantity_Recipe__c</summarizedField>
+    <fullName>Total_Cost__c</fullName>
+    <description>SUM Total recipe lines items</description>
+    <label>Total Cost</label>
+    <summarizedField>Recipe_Line_Item__c.Price_total_Recipe_Stored__c</summarizedField>
     <summaryForeignKey>Recipe_Line_Item__c.Recipe__c</summaryForeignKey>
     <summaryOperation>sum</summaryOperation>
     <trackTrending>false</trackTrending>
