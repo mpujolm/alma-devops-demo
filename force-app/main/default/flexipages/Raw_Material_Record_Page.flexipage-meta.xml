@@ -217,7 +217,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>c:rawMaterialSearch</componentName>
+                <componentName>rawMaterialSearch</componentName>
                 <identifier>raw_material_search</identifier>
             </componentInstance>
         </itemInstances>
