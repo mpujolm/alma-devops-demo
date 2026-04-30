@@ -1,0 +1,53 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref1"
+            },
+            "Name": "Crema facial&corporal",
+            "Family": "None",
+            "IsActive": false,
+            "Recipe__c": "a02gK00000IIOvxQAH",
+            "Batch_Production__c": 5,
+            "Deposit_Price__c": 1,
+            "Label_Price__c": 0.1,
+            "Labor_cost__c": 15,
+            "Batch_price_increase__c": 1.93,
+            "Product_Category__c": "Crema facial&corporal",
+            "Stock__c": 5
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref2"
+            },
+            "Name": "Serum hialuronico con Niacinamida",
+            "IsActive": false,
+            "Recipe__c": "a02gK00000IIOvyQAH",
+            "Batch_Production__c": 5,
+            "Deposit_Price__c": 2,
+            "Label_Price__c": 0.2,
+            "Labor_cost__c": 15,
+            "Batch_price_increase__c": 1.45,
+            "Product_Category__c": "Serum hialuronico con Niacinamida",
+            "Stock__c": 5
+        },
+        {
+            "attributes": {
+                "type": "Product2",
+                "referenceId": "Product2Ref3"
+            },
+            "Name": "Champú familiar",
+            "IsActive": false,
+            "Recipe__c": "a02gK00000IIOvzQAH",
+            "Batch_Production__c": 10,
+            "Deposit_Price__c": 2,
+            "Label_Price__c": 0.2,
+            "Labor_cost__c": 15,
+            "Batch_price_increase__c": 1.38,
+            "Product_Category__c": "Champú familiar",
+            "Stock__c": 10
+        }
+    ]
+}
