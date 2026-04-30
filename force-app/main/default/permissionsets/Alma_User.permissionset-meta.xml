@@ -8,7 +8,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Contact.Customer_Type__c</field>
+        <field>Contact.Contact_Origin__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -49,6 +49,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>OrderRequestLineItem__c.Deposit_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OrderRequestLineItem__c.Line_Total__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -326,11 +331,11 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Recipe__c</tab>
+        <tab>Recipe_Line_Item__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Recipe_Line_Item__c</tab>
+        <tab>Recipe__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>

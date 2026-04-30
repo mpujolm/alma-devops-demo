@@ -4,6 +4,7 @@
         <fullName>Raw_Material_Name_Match</fullName>
         <label>Raw Material Name Match</label>
         <matchingRuleItems>
+            <blankValueBehavior>NullNotAllowed</blankValueBehavior>
             <fieldName>Name</fieldName>
             <matchingMethod>Exact</matchingMethod>
         </matchingRuleItems>

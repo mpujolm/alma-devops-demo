@@ -12,6 +12,7 @@
     <navType>Standard</navType>
     <tabs>standard-Contact</tabs>
     <tabs>OrderRequest__c</tabs>
+    <tabs>OrderRequestLineItem__c</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-Product2</tabs>
     <tabs>Recipe__c</tabs>

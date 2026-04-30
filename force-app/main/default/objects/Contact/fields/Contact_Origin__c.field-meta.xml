@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Customer_Type__c</fullName>
+    <fullName>Contact_Origin__c</fullName>
     <description>Classifies the contact&apos;s relationship to the business, used for segmentation and personalized outreach.</description>
-    <label>Customer Type</label>
+    <label>Contact Origin</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>

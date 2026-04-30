@@ -159,7 +159,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Customer_Type__c</fieldItem>
+                <fieldItem>Record.Contact_Origin__c</fieldItem>
                 <identifier>RecordCustomer_Type_cField</identifier>
             </fieldInstance>
         </itemInstances>
