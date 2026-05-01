@@ -18,7 +18,8 @@
       "Read(//tmp/**)",
       "Bash(git diff *)",
       "Bash(python -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(f['fullName']\\) for f in data['result']]\")",
-      "Bash(xargs -I {} basename {})"
+      "Bash(xargs -I {} basename {})",
+      "Bash(grep -v \"^[^/]*$\")"
     ],
     "additionalDirectories": [
       "\\tmp"

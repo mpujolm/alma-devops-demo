@@ -16,6 +16,7 @@
     <tabs>standard-Case</tabs>
     <tabs>standard-Product2</tabs>
     <tabs>Recipe__c</tabs>
+    <tabs>Recipe_Line_Item__c</tabs>
     <tabs>Raw_Material__c</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
