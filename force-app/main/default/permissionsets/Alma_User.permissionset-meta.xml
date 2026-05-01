@@ -238,11 +238,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Recipe_Line_Item__c.Recipe__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Recipe__c.Description__c</field>
         <readable>true</readable>
     </fieldPermissions>

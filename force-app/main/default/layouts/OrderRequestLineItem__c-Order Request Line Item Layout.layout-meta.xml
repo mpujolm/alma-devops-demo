@@ -16,12 +16,12 @@
                 <field>Product__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Quantity__c</field>
+                <behavior>Readonly</behavior>
+                <field>Unit_Price__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Unit_Price__c</field>
+                <field>Quantity__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -38,7 +38,7 @@
                 <field>Deposit_Container__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Deposit_Price__c</field>
             </layoutItems>
             <layoutItems>
