@@ -18,10 +18,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Unit_Price__c</field>
+                <field>Price__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Batch_price__c</field>
             </layoutItems>
             <layoutItems>
