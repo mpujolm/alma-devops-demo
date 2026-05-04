@@ -4,6 +4,7 @@
     <description>Calcula el precio final al cliente, sobre el precio por remesa, le aplica un incremento y lo divide por las unidades generadas en la remesa</description>
     <formula>IF(Batch_Production__c = 0, 0, (Batch_price__c * Batch_price_increase__c) / Batch_Production__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Total Unit Cost * Batch price increase</inlineHelpText>
     <label>Customer Price</label>
     <precision>18</precision>
     <required>false</required>

@@ -21,9 +21,7 @@
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>Total_Quantity_ml__c</field>
-                <uiBehavior>Edit</uiBehavior>
+                <emptySpace>true</emptySpace>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns>
