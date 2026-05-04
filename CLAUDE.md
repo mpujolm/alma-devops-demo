@@ -15,6 +15,7 @@ One-person handmade cosmetics business. Key feature: container deposit program �
 - Use Permission Sets for all permission management, not Profiles
 - New custom objects: always create a Tab with an appropriate icon
 - Always retrieve a Page Layout or Permission Set before modifying it — never overwrite without retrieving first
+- Before retrieving changes for any object or feature area, always run `sf org list metadata --metadata-type <Type>` for each relevant metadata type (e.g. FlexiPage, Layout, CustomField, CustomObject) and compare against local files — to catch new org metadata not yet present in the project, not just modified tracked files
 
 ## Data Model
 - Product2 includes Price__c as selling price
