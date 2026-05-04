@@ -3,6 +3,7 @@
     <fullName>Unit_production_cost__c</fullName>
     <formula>Recipe__r.Total_Cost__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>without including labor, label neither deposit costs</inlineHelpText>
     <label>Unit production cost</label>
     <precision>18</precision>
     <required>false</required>

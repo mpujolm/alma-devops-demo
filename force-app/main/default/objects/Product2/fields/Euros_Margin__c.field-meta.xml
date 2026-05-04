@@ -3,6 +3,7 @@
     <fullName>Euros_Margin__c</fullName>
     <formula>( Customer_Price__c -  Total_Unit_Cost__c )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Benefit = (Total Unit Cost * Batch price increase) - Total Unit Cost</inlineHelpText>
     <label>Euros Margin</label>
     <precision>18</precision>
     <required>false</required>

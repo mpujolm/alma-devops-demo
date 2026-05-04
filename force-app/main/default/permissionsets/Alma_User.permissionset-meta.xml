@@ -158,11 +158,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Product2.Margin_Percent__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Product2.Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -306,6 +301,10 @@
         <field>Recipe__c.Total_Quantity_ml__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <applicationVisibilities>
+        <application>Alma</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Alma User</label>
     <objectPermissions>

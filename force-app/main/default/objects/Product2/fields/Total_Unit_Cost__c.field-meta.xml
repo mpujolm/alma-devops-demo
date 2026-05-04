@@ -3,6 +3,7 @@
     <fullName>Total_Unit_Cost__c</fullName>
     <formula>IF(Batch_Production__c = 0, 0, Batch_price__c / Batch_Production__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Including label, labor and deposit price</inlineHelpText>
     <label>Total Unit Cost</label>
     <precision>18</precision>
     <required>false</required>
