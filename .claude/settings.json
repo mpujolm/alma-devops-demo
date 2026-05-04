@@ -19,10 +19,13 @@
       "Bash(git diff *)",
       "Bash(python -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(f['fullName']\\) for f in data['result']]\")",
       "Bash(xargs -I {} basename {})",
-      "Bash(grep -v \"^[^/]*$\")"
+      "Bash(grep -v \"^[^/]*$\")",
+      "Bash(xargs grep *)"
     ],
     "additionalDirectories": [
-      "\\tmp"
+      "\\tmp",
+      "\\tmp\\destructive-deploy",
+      "c:\\tmp\\destructive-deploy"
     ]
   }
 }
