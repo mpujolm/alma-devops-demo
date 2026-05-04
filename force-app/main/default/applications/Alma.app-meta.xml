@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#4B2E8A</headerColor>
+        <logo>Alma_Log3</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
     <defaultLandingTab>standard-Contact</defaultLandingTab>
     <description>Alma Natural Cosmetics — main application for managing orders, products, recipes and raw materials.</description>
     <formFactors>Small</formFactors>
