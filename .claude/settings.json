@@ -20,7 +20,8 @@
       "Bash(python -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(f['fullName']\\) for f in data['result']]\")",
       "Bash(xargs -I {} basename {})",
       "Bash(grep -v \"^[^/]*$\")",
-      "Bash(xargs grep *)"
+      "Bash(xargs grep *)",
+      "Bash(git stash *)"
     ],
     "additionalDirectories": [
       "\\tmp",
