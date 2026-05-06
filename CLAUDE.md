@@ -41,3 +41,7 @@ One-person handmade cosmetics business. Key feature: container deposit program â
 ## Deploy
 ```bash
 sf project deploy start --source-dir force-app/main/default
+```
+
+## Post-pull checklist
+- After pulling changes from GitHub (git pull / merge), always deploy any FlexiPages included in the pull â€” they do not auto-activate in the org and must be explicitly deployed.
