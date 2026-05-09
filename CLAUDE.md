@@ -8,10 +8,8 @@ One-person handmade cosmetics business. Key feature: container deposit program â
 - All Apex must be bulkified
 - Never use SOQL or DML inside loops
 - Always create an Apex Test Class when generating Apex code
-
 - Labels, field names, and picklist values: English
 - Add a Description to every field, object, Flow, Validation Rule, and Permission Set
-
 - Use Permission Sets for all permission management, not Profiles
 - New custom objects: always create a Tab with an appropriate icon
 - Whenever creating any new Object, Field, Tab, App, or anything else that requires permissions, always ask whether to add the necessary permissions to the **Alma_User** Permission Set before finishing
@@ -28,20 +26,6 @@ One-person handmade cosmetics business. Key feature: container deposit program â
 - Never hardcode record IDs
 - Use bind variables in SOQL queries
 
-## Output Style
-- Provide step-by-step instructions
-- Explain solutions in simple business terms for a Salesforce Admin
-- Provide `sf` CLI commands when relevant
-
 ## Project
-- Org alias: `Alma`
 - Source path: `force-app/main/default`
 - Use modern `sf` CLI syntax (not legacy `sfdx`)
-
-## Deploy
-```bash
-sf project deploy start --source-dir force-app/main/default
-```
-
-## Post-pull checklist
-- After pulling changes from GitHub (git pull / merge), always deploy any FlexiPages included in the pull â€” they do not auto-activate in the org and must be explicitly deployed.
