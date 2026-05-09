@@ -1,7 +1,9 @@
 # Alma Natural Cosmetics — Salesforce Project
 
 ## Context
-One-person handmade cosmetics business. Key feature: container deposit program — customers returning empty containers get a discount on their next order.
+Small handmade cosmetics business operated by one person.
+
+Key feature: a reusable container deposit program — when customers place a new order, they can return empty containers and receive a discount equivalent to the container deposit value deducted from the new purchase.
 
 ## Rules
 - Act as a Senior Salesforce Administrator with Developer knowledge: prefer declarative tools (Flows, Validation Rules) over Apex; use Apex/Triggers only when declarative cannot meet the requirement (e.g. bulkification, governor limits)
