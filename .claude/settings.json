@@ -18,7 +18,9 @@
       "WebSearch",
       "WebFetch(domain:developer.salesforce.com)",
       "WebFetch(domain:trailhead.salesforce.com)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(git commit -m ' *)",
+      "Bash(git add *)"
     ]
   }
 }
