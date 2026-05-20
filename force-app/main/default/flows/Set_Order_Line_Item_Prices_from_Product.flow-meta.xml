@@ -11,18 +11,25 @@
             <assignToReference>$Record.Unit_Price__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Record.Product__r.Price__c</elementReference>
+                <elementReference>Get_Product.Price__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>$Record.Deposit_Price__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Record.Product__r.Deposit_Price__c</elementReference>
+                <elementReference>Get_Product.Deposit_Price__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Customer_Price__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Product.Customer_Price__c</elementReference>
             </value>
         </assignmentItems>
     </assignments>
-    <description>Before Save flow on Order Request Line Item. Copies Unit Price and Deposit Price from the selected Product when the record is created or updated. Prices are locked at the time of save.</description>
+    <description>Before Save flow on Order Request Line Item. Copies Unit Price, Deposit Price and Customer Price from the selected Product when the record is created or updated. Prices are locked at the time of save.</description>
     <environments>Default</environments>
     <interviewLabel>Set Order Line Item Prices from Product {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Set Order Line Item Prices from Product</label>
@@ -39,11 +46,32 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Product</name>
+        <label>Get Product</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Prices</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Product__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Product2</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Set_Prices</targetReference>
+            <targetReference>Get_Product</targetReference>
         </connector>
         <filterLogic>1</filterLogic>
         <filters>
