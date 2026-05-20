@@ -1,3 +1,4 @@
+import os
 from docx import Document
 from docx.shared import Pt, RGBColor, Inches, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -227,6 +228,6 @@ p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 p.runs[0].font.size = Pt(8)
 p.runs[0].font.color.rgb = RGBColor(0x99, 0x99, 0x99)
 
-out = r'c:\Users\miquelp\Documents\SALESFORCE\PROJECTS\alma\Alma\Alma_Data_Dictionary.docx'
+out = os.environ.get('DATA_DICT_OUTPUT', os.path.join(os.path.dirname(__file__), 'Alma_Data_Dictionary.docx'))
 doc.save(out)
 print(f'Saved: {out}')
