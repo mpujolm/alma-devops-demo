@@ -31,7 +31,7 @@
                 <field>IsActive</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Product_Category__c</field>
             </layoutItems>
             <layoutItems>
@@ -141,11 +141,6 @@
         <masterLabel>00hgK00000DpC42</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>1</sizeY>
-        <summaryLayoutItems>
-            <field>Product_Category__c</field>
-            <posX>0</posX>
-            <posY>0</posY>
-        </summaryLayoutItems>
         <summaryLayoutItems>
             <field>Customer_Price__c</field>
             <posX>1</posX>
