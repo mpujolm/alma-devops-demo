@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Deposit_Price__c</fullName>
-    <description>Container deposit price copied from the selected product when the line item is saved. Locked at the time of the order.</description>
-    <label>Deposit Price</label>
+    <fullName>Customer_Price__c</fullName>
+    <description>Customer price for this product at the time of the order request. Populated from Product2.Customer_Price__c when the order is created.</description>
+    <label>Customer Price</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>

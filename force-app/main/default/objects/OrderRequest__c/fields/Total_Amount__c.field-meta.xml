@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Total_Amount__c</fullName>
-    <description>Total order amount. Roll-up summary: sum of Line Total of all related Order Request Line Items.</description>
+    <description>Total order amount calculated automatically by Flow summing all order lines including container deposits.</description>
     <label>Total Amount</label>
-    <summarizedField>OrderRequestLineItem__c.Line_Total__c</summarizedField>
-    <summaryForeignKey>OrderRequestLineItem__c.OrderRequest__c</summaryForeignKey>
-    <summaryOperation>SUM</summaryOperation>
-    <type>Summary</type>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
 </CustomField>

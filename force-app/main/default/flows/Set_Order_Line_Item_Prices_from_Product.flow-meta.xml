@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Prices</name>
+        <label>Set Prices</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Unit_Price__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Product__r.Price__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Deposit_Price__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Product__r.Deposit_Price__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
     <description>Before Save flow on Order Request Line Item. Copies Unit Price and Deposit Price from the selected Product when the record is created or updated. Prices are locked at the time of save.</description>
     <environments>Default</environments>
     <interviewLabel>Set Order Line Item Prices from Product {!$Flow.CurrentDateTime}</interviewLabel>
@@ -19,7 +40,7 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <start>
-        <locationX>50</locationX>
+        <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Set_Prices</targetReference>
@@ -36,25 +57,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
     </start>
-    <assignments>
-        <name>Set_Prices</name>
-        <label>Set Prices</label>
-        <locationX>50</locationX>
-        <locationY>120</locationY>
-        <assignmentItems>
-            <assignToReference>$Record.Unit_Price__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Product__r.Price__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>$Record.Deposit_Price__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Record.Product__r.Deposit_Price__c</elementReference>
-            </value>
-        </assignmentItems>
-    </assignments>
     <status>Active</status>
 </Flow>

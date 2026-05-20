@@ -104,12 +104,11 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Product__c</fields>
-        <fields>Stock__c</fields>
-        <fields>Quantity__c</fields>
-        <fields>Unit_Price__c</fields>
         <fields>Deposit_Container__c</fields>
-        <fields>Deposit_Price__c</fields>
         <fields>Line_Total__c</fields>
+        <fields>Quantity__c</fields>
+        <fields>Customer_Price__c</fields>
+        <fields>Deposit_Price__c</fields>
         <relatedList>OrderRequestLineItem__c.OrderRequest__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -137,7 +136,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hgK00000EC75i</masterLabel>
+        <masterLabel>00hgK00000E0joH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

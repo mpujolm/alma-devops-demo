@@ -22,6 +22,7 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>true</emptySpace>
+                <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns>

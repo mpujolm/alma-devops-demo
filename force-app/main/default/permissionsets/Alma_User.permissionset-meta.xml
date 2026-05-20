@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>Alma</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <description>Grants access to Alma Natural Cosmetics custom objects and fields. Assigned to all active Alma users.</description>
     <fieldPermissions>
         <editable>true</editable>
@@ -163,11 +167,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Product2.Margin_Percent__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Product2.Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -311,10 +310,6 @@
         <field>Recipe__c.Total_Quantity_ml__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <applicationVisibilities>
-        <application>Alma</application>
-        <visible>true</visible>
-    </applicationVisibilities>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Alma User</label>
     <objectPermissions>

@@ -14,7 +14,10 @@
                 <elementReference>$Record.Id</elementReference>
             </value>
         </inputParameters>
+        <nameSegment>OrderRequestPDFGenerator</nameSegment>
     </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>When an Order Request status changes to Delivered, generates a branded PDF confirmation and attaches it to the record as a File. Uses the OrderRequestPDFGenerator Apex invocable.</description>
     <interviewLabel>OrderRequest Generate PDF on Delivered {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Generate PDF on Order Delivered</label>

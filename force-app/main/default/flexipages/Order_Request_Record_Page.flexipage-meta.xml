@@ -85,6 +85,16 @@
                 <identifier>RecordStatus_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Total_Amount_Ana__c</fieldItem>
+                <identifier>RecordTotal_Amount_Ana__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-6248bb50-cc14-4c20-a1f0-dc7b00083f2d</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -107,6 +117,16 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Payment_Method__c</fieldItem>
                 <identifier>RecordPayment_Method_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Total_Amount_Ana__c</fieldItem>
+                <identifier>RecordTotal_Amount_Ana_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
