@@ -3,6 +3,7 @@
     <fullName>Expiration_Date__c</fullName>
     <description>Number of months until the product expires when unopened</description>
     <externalId>false</externalId>
+    <inlineHelpText>Number of months until the product expires when unopened</inlineHelpText>
     <label>Expiration Date</label>
     <precision>18</precision>
     <required>false</required>

@@ -4,7 +4,8 @@
     <description>Price of this ingredient in the recipe = Quantity used * Raw Material price / Raw Material stock quantity</description>
     <formula>IF(OR(ISBLANK(Quantity__c), Quantity__c = 0), 0, Quantity_Recipe__c * Price__c / Quantity__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Price</label>
+    <inlineHelpText>Price of this ingredient in the recipe = Quantity used * Raw Material price / Raw Material stock quantity</inlineHelpText>
+    <label>Price (Recipe)</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>
