@@ -217,16 +217,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>rawMaterialSearch</componentName>
-                <identifier>raw_material_search</identifier>
-            </componentInstance>
-        </itemInstances>
-        <name>searchTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>active</name>
                     <value>true</value>
@@ -241,20 +231,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>activity_tab</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>searchTabContent</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Buscar</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>search_tab</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>
