@@ -113,7 +113,7 @@
             <fieldInstance>
                 <fieldInstanceProperties>
                     <name>uiBehavior</name>
-                    <value>readonly</value>
+                    <value>none</value>
                 </fieldInstanceProperties>
                 <fieldItem>Record.Product_Category__c</fieldItem>
                 <identifier>RecordProduct_Category__cField</identifier>

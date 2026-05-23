@@ -2,7 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Deposit_Price__c</fullName>
     <description>Container deposit price copied from the selected product when the line item is saved. Locked at the time of the order.</description>
-    <externalId>false</externalId>
     <label>Deposit Price</label>
     <precision>18</precision>
     <required>false</required>
