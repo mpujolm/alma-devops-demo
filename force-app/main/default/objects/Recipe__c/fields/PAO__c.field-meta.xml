@@ -3,6 +3,7 @@
     <fullName>PAO__c</fullName>
     <description>Period After Opening: number of months the product can be used once opened</description>
     <externalId>false</externalId>
+    <inlineHelpText>Period After Opening: number of months the product can be used once opened</inlineHelpText>
     <label>PAO</label>
     <precision>18</precision>
     <required>false</required>

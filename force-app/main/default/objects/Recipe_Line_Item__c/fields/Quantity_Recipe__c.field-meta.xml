@@ -3,7 +3,7 @@
     <fullName>Quantity_Recipe__c</fullName>
     <description>Quantity in grams of this ingredient used in the recipe</description>
     <externalId>false</externalId>
-    <label>Quantity</label>
+    <label>Quantity (Recipe)</label>
     <precision>18</precision>
     <required>false</required>
     <scale>2</scale>
