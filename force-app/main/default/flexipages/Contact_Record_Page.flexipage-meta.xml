@@ -78,6 +78,16 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>orderRequestCreator</componentName>
+                <identifier>c_orderRequestCreator</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>feedCustomTabContent</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
                 <componentInstanceProperties>
                     <name>displayOption</name>
                     <value>BOTH</value>
@@ -484,6 +494,20 @@
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>body</name>
+                    <value>feedCustomTabContent</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>title</name>
+                    <value>Create Order</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:tab</componentName>
+                <identifier>feedCustomTab</identifier>
+            </componentInstance>
+        </itemInstances>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
