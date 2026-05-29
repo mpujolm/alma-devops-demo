@@ -8,17 +8,10 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>$Record.Unit_Price__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Get_Product.Price__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>$Record.Deposit_Price__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Get_Product.Deposit_Price__c</elementReference>
+                <elementReference>Get_Product.Unit_Container_Price__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
