@@ -19,7 +19,10 @@ Key feature: a reusable container deposit program — when customers place a new
 - Before retrieving changes for any object or feature area, always run `sf org list metadata --metadata-type <Type>` for each relevant metadata type (e.g. FlexiPage, Layout, CustomField, CustomObject) and compare against local files — to catch new org metadata not yet present in the project, not just modified tracked files
 
 ## Data Model
-- Product2 includes Price__c as selling price
+- Product2 includes Customer_Price__c as selling price (formula: batch price × increase / batch units)
+- Product2 has a Lookup to Recipe__c (the recipe used to produce the product)
+- Recipe__c has a Master-Detail with Recipe_Line_Item__c (the ingredients/raw materials used)
+- Recipe_Line_Item__c has a Lookup to Raw_Material__c (the raw material for each recipe line)
 - OrderRequest__c is related to Contact
 - OrderRequestLineItem__c is related to OrderRequest__c and Product2
 

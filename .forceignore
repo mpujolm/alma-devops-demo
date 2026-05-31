@@ -13,8 +13,6 @@ package.xml
 
 node_modules/
 
-# Excluded temporarily from deploy (active matching rule cannot be modified)
-**/matchingRules/**
-
 # Standard Salesforce utility bars - not part of this project
 **/*UtilityBar*
+

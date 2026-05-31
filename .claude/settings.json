@@ -33,17 +33,28 @@
       "Read(//tmp/**)",
       "Skill(update-config)",
       "Skill(update-config:*)",
-      "PowerShell(sf *)",
-      "PowerShell(sf project deploy start *)",
-      "PowerShell(sf project deploy report *)",
-      "PowerShell(sf data query *)",
-      "PowerShell(sf data delete record *)",
-      "PowerShell(sf data update record *)"
+      "PowerShell(*)",
+      "Bash(find \"/mnt/c/Users/miquelp/Documents/SALESFORCE/PROJECTS/alma-devops-demo/force-app/main/default/lwc\" -maxdepth 1 -type d 2>/dev/null | tail -n +2)",
+      "Read(//mnt/c/Users/miquelp/Documents/SALESFORCE/PROJECTS/alma-devops-demo/force-app/main/default/**)",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\miquelp\\\\Documents\\\\SALESFORCE\\\\PROJECTS\\\\alma-devops-demo\\\\force-app\\\\main\\\\default\\\\objects\" -Directory)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(Sort-Object)",
+      "Bash(ls \"c:\\\\tmp\\\\destructive-deploy\" 2>&1; ls \"c:\\\\tmp\" 2>&1)",
+      "Read(//c/tmp/**)",
+      "Bash(mkdir \"c:\\\\tmp\\\\delivery-note-delete\" 2>&1)",
+      "Bash(Set-Content -Path 'c:\\\\tmp\\\\delivery-note-delete\\\\package.xml' -Encoding utf8 -Value '<?xml version=\"1.0\" encoding=\"UTF-8\"?> *)",
+      "Bash(Set-Content -Path 'c:\\\\tmp\\\\delivery-note-delete\\\\destructiveChanges.xml' -Encoding utf8 -Value '<?xml version=\"1.0\" encoding=\"UTF-8\"?> *)",
+      "Bash(Get-ChildItem -Path \"force-app\" -Directory -Recurse)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(grep '\\\\.cls$')",
+      "Bash(awk '{print $NF}')",
+      "Bash(git pull *)"
     ],
     "additionalDirectories": [
       "c:\\tmp\\destructive-deploy",
       "c:\\tmp\\flow-delete",
-      "C:\\Users\\miquelp\\.claude"
+      "C:\\Users\\miquelp\\.claude",
+      "c:\\tmp"
     ]
   }
 }
