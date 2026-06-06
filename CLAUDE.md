@@ -16,7 +16,7 @@ Key feature: a reusable container deposit program — when customers place a new
 - New custom objects: always create a Tab with an appropriate icon
 - Whenever creating any new Object, Field, Tab, App, or anything else that requires permissions, always ask whether to add the necessary permissions to the **Alma_User** Permission Set before finishing
 - Always retrieve a Page Layout or Permission Set before modifying it — never overwrite without retrieving first
-- Before retrieving changes for any object or feature area, always run `sf org list metadata --metadata-type <Type>` for each relevant metadata type (e.g. FlexiPage, Layout, CustomField, CustomObject) and compare against local files — to catch new org metadata not yet present in the project, not just modified tracked files
+- Run `sf org list metadata --metadata-type <Type>` only when retrieving or modifying existing metadata (e.g. editing a Layout, updating a Permission Set, retrieving a Flow) — skip for net-new metadata creation where there is no risk of overwriting existing work
 
 ## Data Model
 - Product2 includes Customer_Price__c as selling price (formula: batch price × increase / batch units)
