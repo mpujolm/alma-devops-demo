@@ -19,13 +19,7 @@
                             <value>Global.LogACall</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Global.NewNote</value>
-                        </valueListItems>
-                        <valueListItems>
                             <value>Global.NewEvent</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>Global.SendEmail</value>
                         </valueListItems>
                         <valueListItems>
                             <value>Edit</value>
@@ -35,12 +29,6 @@
                         </valueListItems>
                         <valueListItems>
                             <value>Clone</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>CallHighlightAction</value>
-                        </valueListItems>
-                        <valueListItems>
-                            <value>SmsHighlightAction</value>
                         </valueListItems>
                         <valueListItems>
                             <value>EmailHighlightAction</value>
@@ -490,7 +478,7 @@
             <componentInstance>
                 <componentInstanceProperties>
                     <name>active</name>
-                    <value>true</value>
+                    <value>false</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>body</name>

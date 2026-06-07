@@ -48,7 +48,11 @@
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(grep '\\\\.cls$')",
       "Bash(awk '{print $NF}')",
-      "Bash(git pull *)"
+      "Bash(git pull *)",
+      "Bash(Select-String -Pattern \"Low_Stock\" -SimpleMatch)",
+      "Bash(Start-Sleep -Seconds 15)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); r=d.get\\('result',{}\\); print\\('Status:', r.get\\('status'\\)\\); [print\\('Error:', f.get\\('problem',''\\)\\) for f in r.get\\('details',{}\\).get\\('componentFailures',[]\\)]\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(r['Id'], r.get\\('ActiveVersionId'\\)\\) for r in d.get\\('result',{}\\).get\\('records',[]\\)]\")"
     ],
     "additionalDirectories": [
       "c:\\tmp\\destructive-deploy",
