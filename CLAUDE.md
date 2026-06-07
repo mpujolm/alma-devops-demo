@@ -14,7 +14,7 @@ Key feature: a reusable container deposit program — when customers place a new
 - Add a Description to every field, object, Flow, Validation Rule, and Permission Set
 - Use Permission Sets for all permission management, not Profiles
 - New custom objects: always create a Tab with an appropriate icon
-- Whenever creating any new Object, Field, Tab, App, or anything else that requires permissions, always ask whether to add the necessary permissions to the **Alma_User** Permission Set before finishing
+- Whenever creating any new Object, Field, Tab, App, Apex Class, or LWC, always add the necessary permissions to the **Alma_User** Permission Set automatically — do not ask first
 - Always retrieve a Page Layout or Permission Set before modifying it — never overwrite without retrieving first
 - Run `sf org list metadata --metadata-type <Type>` only when retrieving or modifying existing metadata (e.g. editing a Layout, updating a Permission Set, retrieving a Flow) — skip for net-new metadata creation where there is no risk of overwriting existing work
 
@@ -34,3 +34,4 @@ Key feature: a reusable container deposit program — when customers place a new
 ## Project
 - Source path: `force-app/main/default`
 - Use modern `sf` CLI syntax (not legacy `sfdx`)
+- Always ask before deploying any changes to the org (`sf project deploy start` or equivalent) — never deploy without explicit confirmation

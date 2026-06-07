@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>Visualforce PDF template for the OrderRequest delivery note. Renders order header and all line items as a formatted PDF document.</description>
+    <label>Order Delivery Note</label>
+</ApexPage>

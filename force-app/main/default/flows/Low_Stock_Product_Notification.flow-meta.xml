@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <description>Record-triggered flow on Product2 that fires when Stock__c drops below 10 units for the first time (condition change from false to true). Creates a High Priority Case owned by user alias &apos;ana&apos;. If ana is not found or Case creation fails, sends a fallback email to user alias &apos;mpm&apos;.</description>
+    <interviewLabel>Low Stock Product Notification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Low Stock Product Notification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+
+    <!-- ═══════════════════════════ ACTION CALLS ═════════════════════════════ -->
+
+    <actionCalls>
+        <name>Send_Email_To_MPM</name>
+        <label>Send Email to MPM</label>
+        <locationX>440</locationX>
+        <locationY>674</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Get_MPM_User.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>Email_Subject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Email_Body</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+
+    <!-- ════════════════════════════ DECISIONS ══════════════════════════════ -->
+
+    <decisions>
+        <name>Decision_Ana_Found</name>
+        <label>Was User Ana Found?</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Get_MPM_User</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>User Not Found</defaultConnectorLabel>
+        <rules>
+            <name>Ana_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Ana_User</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Low_Stock_Case</targetReference>
+            </connector>
+            <label>Ana Found</label>
+        </rules>
+    </decisions>
+
+    <decisions>
+        <name>Decision_MPM_Found</name>
+        <label>Was User MPM Found?</label>
+        <locationX>440</locationX>
+        <locationY>566</locationY>
+        <defaultConnectorLabel>MPM Not Found — End</defaultConnectorLabel>
+        <rules>
+            <name>MPM_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_MPM_User</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_To_MPM</targetReference>
+            </connector>
+            <label>MPM Found</label>
+        </rules>
+    </decisions>
+
+    <!-- ══════════════════════════ RECORD CREATES ════════════════════════════ -->
+    <!-- Fault connector routes to Get_MPM_User if DML fails                   -->
+
+    <recordCreates>
+        <name>Create_Low_Stock_Case</name>
+        <label>Create Low Stock Case</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <faultConnector>
+            <targetReference>Get_MPM_User</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>Case_Subject</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>Case_Description</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>New</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Origin</field>
+            <value>
+                <stringValue>Web</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>Get_Ana_User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordCreates>
+
+    <!-- ══════════════════════════ RECORD LOOKUPS ════════════════════════════ -->
+    <!-- Both recordLookups are grouped here to satisfy the Flow schema         -->
+
+    <recordLookups>
+        <name>Get_Ana_User</name>
+        <label>Get User Ana</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Decision_Ana_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Alias</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>ana</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <recordLookups>
+        <name>Get_MPM_User</name>
+        <label>Get User MPM</label>
+        <locationX>440</locationX>
+        <locationY>458</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Decision_MPM_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Alias</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>mpm</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+
+    <!-- ════════════════════════════ START ══════════════════════════════════ -->
+    <!-- Trigger: Product2 Update only                                         -->
+    <!-- Condition: Stock__c < 10                                              -->
+    <!-- doesRequireRecordChangedToMeetCriteria: only fires when condition      -->
+    <!-- transitions from false → true (not on every update while already low) -->
+
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Ana_User</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Stock__c</field>
+            <operator>LessThan</operator>
+            <value>
+                <numberValue>10.0</numberValue>
+            </value>
+        </filters>
+        <object>Product2</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+
+    <status>Active</status>
+
+    <!-- ═══════════════════════════ TEXT TEMPLATES ═══════════════════════════ -->
+
+    <textTemplates>
+        <name>Case_Subject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Low Stock Alert: {!$Record.Name}</text>
+    </textTemplates>
+
+    <textTemplates>
+        <name>Case_Description</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Product &quot;{!$Record.Name}&quot; has dropped below the minimum stock threshold.
+
+Current stock: {!$Record.Stock__c} units (threshold: 10 units).
+
+Please review inventory and arrange restocking as soon as possible.</text>
+    </textTemplates>
+
+    <textTemplates>
+        <name>Email_Subject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>[ACTION REQUIRED] Low Stock Alert: {!$Record.Name}</text>
+    </textTemplates>
+
+    <textTemplates>
+        <name>Email_Body</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hi,
+
+This is an automated alert from Alma Natural Cosmetics.
+
+Product &quot;{!$Record.Name}&quot; has dropped below the minimum stock threshold.
+Current stock: {!$Record.Stock__c} units (threshold: 10 units).
+
+A High Priority Case could not be created automatically (either user &apos;ana&apos; was not found in the system or Case creation failed).
+
+Please log in and take action immediately.
+
+— Alma Natural Cosmetics Automated System</text>
+    </textTemplates>
+
+</Flow>

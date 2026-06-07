@@ -1,6 +1,7 @@
 {
   "permissions": {
     "allow": [
+      "Bash(*)",
       "Bash(sf *)",
       "Bash(git branch *)",
       "Bash(git rm *)",

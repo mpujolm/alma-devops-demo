@@ -300,7 +300,19 @@
         <field>Recipe__c.Total_Quantity_ml__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <apexClassAccesses>
+        <apexClass>GenerateDeliveryNotePDF</apexClass>
+        <enabled>true</enabled>
+    </apexClassAccesses>
+    <apexClassAccesses>
+        <apexClass>OrderDeliveryNoteController</apexClass>
+        <enabled>true</enabled>
+    </apexClassAccesses>
     <hasActivationRequired>false</hasActivationRequired>
+    <pageAccesses>
+        <apexPage>OrderDeliveryNote</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <label>Alma User</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>

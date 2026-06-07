@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Status_Changed_To_Ready</name>
+        <label>Status Changed to Ready?</label>
+        <locationX>176</locationX>
+        <locationY>252</locationY>
+        <defaultConnectorLabel>No (Was Already Ready)</defaultConnectorLabel>
+        <rules>
+            <name>Was_Not_Previously_Ready</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Ready</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Generate_Delivery_Note_PDF</targetReference>
+            </connector>
+            <label>Yes (Newly Set to Ready)</label>
+        </rules>
+    </decisions>
+    <actionCalls>
+        <name>Generate_Delivery_Note_PDF</name>
+        <label>Generate Delivery Note PDF</label>
+        <locationX>176</locationX>
+        <locationY>468</locationY>
+        <actionName>GenerateDeliveryNotePDF</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>orderRequestIds</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <description>When an OrderRequest Status changes to Ready, generates a PDF delivery note with all line items and attaches it to the record as a file.</description>
+    <interviewLabel>Generate Delivery Note on Ready {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Generate Delivery Note on Ready</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Status_Changed_To_Ready</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Ready</stringValue>
+            </value>
+        </filters>
+        <object>OrderRequest__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

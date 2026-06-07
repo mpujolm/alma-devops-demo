@@ -1,0 +1,74 @@
+<template>
+    <div class="slds-p-around_medium">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading products" size="small"></lightning-spinner>
+        </template>
+        <template if:false={isLoading}>
+            <template if:true={error}>
+                <p class="slds-text-color_error">{error}</p>
+            </template>
+            <template if:false={error}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col"><div class="slds-truncate" title="Product">Product</div></th>
+                            <th scope="col"><div class="slds-truncate" title="Price">Price</div></th>
+                            <th scope="col"><div class="slds-truncate" title="Deposit">Deposit</div></th>
+                            <th scope="col" class="qty-col"><div class="slds-truncate" title="Qty">Qty</div></th>
+                            <th scope="col"><div class="slds-truncate" title="Return Container">Return Container</div></th>
+                            <th scope="col"><div class="slds-truncate" title="Line Total">Line Total</div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={orderLines} for:item="line">
+                            <tr key={line.productId}>
+                                <td>{line.name}</td>
+                                <td>{line.formattedCustomerPrice}</td>
+                                <td>{line.formattedDepositPrice}</td>
+                                <td class="qty-col">
+                                    <lightning-input
+                                        type="number"
+                                        min="0"
+                                        step="1"
+                                        value={line.quantity}
+                                        data-id={line.productId}
+                                        onchange={handleQuantityChange}
+                                        variant="label-hidden"
+                                        label="Quantity">
+                                    </lightning-input>
+                                </td>
+                                <td class="slds-text-align_center">
+                                    <lightning-input
+                                        type="checkbox"
+                                        checked={line.depositContainer}
+                                        data-id={line.productId}
+                                        onchange={handleDepositChange}
+                                        variant="label-hidden"
+                                        label="Return Container">
+                                    </lightning-input>
+                                </td>
+                                <td>{line.formattedLineTotal}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="slds-text-align_right slds-p-right_medium">
+                                <strong>Grand Total:</strong>
+                            </td>
+                            <td><strong>{formattedGrandTotal}</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="slds-m-top_medium">
+                    <lightning-button
+                        label="Save Order"
+                        variant="brand"
+                        onclick={handleSave}
+                        disabled={isSaving}>
+                    </lightning-button>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>
