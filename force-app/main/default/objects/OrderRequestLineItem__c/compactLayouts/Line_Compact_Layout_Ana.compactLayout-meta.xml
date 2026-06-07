@@ -2,7 +2,7 @@
 <CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Line_Compact_Layout_Ana</fullName>
     <fields>Name</fields>
-    <fields>Deposit_Price__c</fields>
+    <fields>Unit_Container_Price__c</fields>
     <fields>Line_Total__c</fields>
     <fields>Quantity__c</fields>
     <fields>Unit_Price__c</fields>

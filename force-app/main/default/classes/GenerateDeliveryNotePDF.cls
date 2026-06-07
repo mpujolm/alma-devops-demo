@@ -17,7 +17,7 @@ public with sharing class GenerateDeliveryNotePDF {
         System.enqueueJob(new DeliveryNotePDFQueueable(orderRequestIds));
     }
 
-    public class DeliveryNotePDFQueueable implements Queueable {
+    public class DeliveryNotePDFQueueable implements Queueable, Database.AllowsCallouts {
 
         private List<Id> orderRequestIds;
 

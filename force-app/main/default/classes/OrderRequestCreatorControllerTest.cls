@@ -7,9 +7,9 @@ public class OrderRequestCreatorControllerTest {
         insert c;
 
         insert new List<Product2>{
-            new Product2(Name = 'Cream', IsActive = true, Deposit_Price__c = 2.00),
-            new Product2(Name = 'Serum', IsActive = true, Deposit_Price__c = 3.00),
-            new Product2(Name = 'Inactive Product', IsActive = false, Deposit_Price__c = 1.00)
+            new Product2(Name = 'Cream', IsActive = true, Unit_Container_Price__c = 2.00),
+            new Product2(Name = 'Serum', IsActive = true, Unit_Container_Price__c = 3.00),
+            new Product2(Name = 'Inactive Product', IsActive = false, Unit_Container_Price__c = 1.00)
         };
     }
 

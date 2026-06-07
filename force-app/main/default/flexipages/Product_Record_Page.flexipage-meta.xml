@@ -265,8 +265,8 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Deposit_Price__c</fieldItem>
-                <identifier>RecordDeposit_Price_cField</identifier>
+                <fieldItem>Record.Unit_Container_Price__c</fieldItem>
+                <identifier>RecordUnit_Container_Price_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-batchprod-left</name>

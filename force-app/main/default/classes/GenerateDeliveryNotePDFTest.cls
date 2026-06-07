@@ -23,7 +23,7 @@ private class GenerateDeliveryNotePDFTest {
             Quantity__c         = 2,
             Customer_Price__c   = 15.00,
             Deposit_Container__c = true,
-            Deposit_Price__c    = 1.50
+            Unit_Container_Price__c = 1.50
         );
         insert lineItem;
     }

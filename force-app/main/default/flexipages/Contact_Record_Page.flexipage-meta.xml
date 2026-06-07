@@ -75,7 +75,6 @@
         <name>header</name>
         <type>Region</type>
     </flexiPageRegions>
-
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -487,18 +486,6 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>c:createOrder</componentName>
-                <identifier>c_createOrder</identifier>
-            </componentInstance>
-        </itemInstances>
-        <mode>Replace</mode>
-        <name>createOrderTabContent</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-
-        <itemInstances>
-            <componentInstance>
                 <componentInstanceProperties>
                     <name>active</name>
                     <value>true</value>
@@ -527,20 +514,6 @@
                 </componentInstanceProperties>
                 <componentName>flexipage:tab</componentName>
                 <identifier>detailTab</identifier>
-            </componentInstance>
-        </itemInstances>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>body</name>
-                    <value>createOrderTabContent</value>
-                </componentInstanceProperties>
-                <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Create Order</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>createOrderTab</identifier>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

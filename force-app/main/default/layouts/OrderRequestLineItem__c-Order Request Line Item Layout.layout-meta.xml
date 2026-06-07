@@ -44,7 +44,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Deposit_Price__c</field>
+                <field>Unit_Container_Price__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

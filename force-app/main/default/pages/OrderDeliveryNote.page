@@ -111,7 +111,7 @@
                     </td>
                     <td class="num">
                         <apex:outputText value="{0,number,#,##0.00} &#8364;">
-                            <apex:param value="{!item.Deposit_Price__c}"/>
+                            <apex:param value="{!item.Unit_Container_Price__c}"/>
                         </apex:outputText>
                     </td>
                     <td class="num">

@@ -62,7 +62,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>OrderRequestLineItem__c.Deposit_Price__c</field>
+        <field>OrderRequestLineItem__c.Unit_Container_Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -300,19 +300,7 @@
         <field>Recipe__c.Total_Quantity_ml__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <apexClassAccesses>
-        <apexClass>GenerateDeliveryNotePDF</apexClass>
-        <enabled>true</enabled>
-    </apexClassAccesses>
-    <apexClassAccesses>
-        <apexClass>OrderDeliveryNoteController</apexClass>
-        <enabled>true</enabled>
-    </apexClassAccesses>
     <hasActivationRequired>false</hasActivationRequired>
-    <pageAccesses>
-        <apexPage>OrderDeliveryNote</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <label>Alma User</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>

@@ -3,7 +3,7 @@ public with sharing class OrderRequestCreatorController {
     @AuraEnabled(cacheable=true)
     public static List<Product2> getProducts() {
         return [
-            SELECT Id, Name, IsActive, Customer_Price__c, Deposit_Price__c
+            SELECT Id, Name, IsActive, Customer_Price__c, Unit_Container_Price__c
             FROM Product2
             WHERE IsActive = true
             ORDER BY Name ASC
@@ -42,7 +42,7 @@ public with sharing class OrderRequestCreatorController {
                 Product__c = item.productId,
                 Quantity__c = item.quantity,
                 Customer_Price__c = item.customerPrice,
-                Deposit_Price__c = item.depositPrice,
+                Unit_Container_Price__c = item.depositPrice,
                 Deposit_Container__c = item.returnContainer
             ));
         }

@@ -7,7 +7,7 @@
     <columns>Quantity__c</columns>
     <columns>Unit_Price__c</columns>
     <columns>Deposit_Container__c</columns>
-    <columns>Deposit_Price__c</columns>
+    <columns>Unit_Container_Price__c</columns>
     <columns>Line_Total__c</columns>
     <filterScope>Everything</filterScope>
     <label>All Order Request Line Items</label>

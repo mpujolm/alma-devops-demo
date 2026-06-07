@@ -27,7 +27,7 @@ public with sharing class OrderDeliveryNoteController {
 
         lineItems = [
             SELECT Id, Product__r.Name, Quantity__c, Customer_Price__c,
-                   Deposit_Container__c, Deposit_Price__c, Line_Total__c
+                   Deposit_Container__c, Unit_Container_Price__c, Line_Total__c
             FROM OrderRequestLineItem__c
             WHERE OrderRequest__c = :orderId
             WITH SECURITY_ENFORCED
